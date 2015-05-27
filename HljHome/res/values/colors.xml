@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="black">#000000</color>
+    <!-- 黑色 -->
+
+    <color name="white">#FFFFFF</color>
+    <!-- 白色 -->
+
+    <color name="blue">#314a9c</color>
+    <!-- 蓝色 -->
+
+    <color name="gray">#a0a0a0</color>
+    <!-- 灰色 -->
+
+    <color name="red">#FC5F72</color>
+    <color name="bg_red">#E77874</color>
+    <color name="transparent">#00000000</color>
+    <color name="half">#7f000000</color>
+    <color name="radiobg">#474749</color>
+    <color name="title_text">#CCC5BB</color>
+    <color name="greenbt">#8EBB46</color>
+    <color name="blueground">#6ABDD1</color>
+    <color name="blues">#256DBE</color>
+    <color name="windowcolor">#DDDCD0</color>
+    <color name="bgcolor">#E8E4D9</color>
+    <color name="chattopcolor">#F2F0EC</color>
+    <color name="gridtextcolor">#0079A2</color>
+    <color name="halftransparent">#9000</color>
+    <color name="green">#ffb2ffb2</color>
+    <color name="yellow">#ff13dd1e</color>
+    <color name="dark">#ffb2b2b2</color>
+    <color name="detail_point">#ffffaa00</color>
+    <color name="detail_main_text">#ff999999</color>
+    <color name="set_user_text">#f39800</color>
+    <color name="color1">#e99300</color>
+    <color name="color2">#00d9e9</color>
+    <color name="color3">#00e984</color>
+    <color name="color4">#ae00e9</color>
+    <color name="color5">#9200e9</color>
+    <color name="color6">#9258e8</color>
+    <color name="color7">#e86058</color>
+    <color name="color8">#c7e858</color>
+    <color name="color9">#58e86d</color>
+    <color name="color10">#d158e8</color>
+    <color name="color11">#e89e58</color>
+    <color name="color12">#58a2e8</color>
+
+    <!-- vlc -->
+    <color name="item_common">#F111</color>
+    <color name="item_1">#F222</color>
+    <color name="item_2">#F000</color>
+    <color name="orange">#FFF48B00</color>
+    <color name="darkorange">#FF824600</color>
+    <color name="transparent_gray">#A000</color>
+
+</resources>

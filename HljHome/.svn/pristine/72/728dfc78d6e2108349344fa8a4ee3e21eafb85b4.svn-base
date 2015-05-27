@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xmz="http://com.hlj"
+    android:id="@+id/rl_grade"
+    android:layout_width="202.0dip"
+    android:layout_height="222.0dip"
+    android:layout_gravity="center_horizontal"
+    android:layout_margin="10dip"
+    android:focusable="true"
+    android:background="@drawable/yellow_no_shadow"
+    android:focusableInTouchMode="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="10dip" >
+
+    <com.hlj.view.ImageViewBorder
+        android:id="@+id/movie_image"
+        android:layout_width="268.0dip"
+        android:layout_height="404.0dip"
+        android:scaleType="fitXY"
+        android:src="@drawable/yellow_no_shadow"
+        android:visibility="gone"
+        xmz:BorderColor="WHITE" />
+
+    <TextView
+        android:id="@+id/grade_text"
+        style="@style/TextOnMainLayout_new"
+        android:layout_width="200.0dip"
+        android:layout_height="50dip"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dip"
+        android:background="@color/transparent"
+        android:gravity="center"
+        android:text=""
+        android:visibility="visible" />
+
+</RelativeLayout>

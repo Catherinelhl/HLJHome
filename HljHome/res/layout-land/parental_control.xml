@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/launcher52_bg" >
+
+    <LinearLayout
+        android:layout_width="400.0dip"
+        android:layout_height="336.0dip"
+        android:layout_marginLeft="120dip"
+        android:layout_marginTop="35dip"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40.0dip"
+            android:layout_marginTop="50.0dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40.0dip"
+                android:layout_alignParentLeft="true"
+                android:text="原  密  码    :"
+                android:textColor="@color/white"
+                android:textSize="24.0dip" />
+
+            <EditText
+                android:id="@id/parent_old_pwd"
+                android:layout_width="270.0dip"
+                android:layout_height="40.0dip"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/edittext_bg_selector"
+                android:ellipsize="start"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="24.0dip"
+                android:textStyle="bold" >
+
+                <requestFocus />
+            </EditText>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40.0dip"
+            android:layout_marginTop="10.0dip"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/parent_new_pwd"
+                android:layout_width="270.0dip"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/edittext_bg_selector"
+                android:ellipsize="start"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="24.0dip" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="新  密  码    :"
+                android:textColor="@color/white"
+                android:textSize="24.0dip" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40.0dip"
+            android:layout_marginTop="10.0dip"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/parent_new_sec_pwd"
+                android:layout_width="270.0dip"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/edittext_bg_selector"
+                android:ellipsize="start"
+                android:inputType="textPassword"
+                android:nextFocusDown="@+id/parent_confirm"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="24.0dip" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="确认新密码:"
+                android:textColor="@color/white"
+                android:textSize="24.0dip" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30.0dip">
+            <Button
+                android:id="@+id/parent_confirm"
+                android:layout_width="150.0dip"
+                android:layout_height="50.0dip"
+                android:background="@drawable/video_details_btn_selector"
+                android:text="确定"
+                android:textColor="@color/detail_point"
+                android:textSize="24.0dip"
+                android:layout_alignParentLeft="true" android:layout_marginLeft="20dp"
+                android:layout_centerVertical="true"/>
+
+            <Button
+                android:id="@+id/parent_cancel"
+                android:layout_width="150.0dip"
+                android:layout_height="50.0dip"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/video_details_btn_selector"
+                android:text="取消"
+                android:textColor="@color/detail_point"
+                android:textSize="24.0dip" android:layout_marginRight="20.0dip"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
+    android:layout_marginTop="50dip"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="50dip" >
+
+    <RelativeLayout
+        android:id="@id/play_colection_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal" >
+
+        <HorizontalScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center" >
+
+            <com.hlj.view.GradeLayout
+                android:id="@id/recommend_grid"
+                android:layout_width="fill_parent"
+                android:layout_height="400.0dip"
+                android:gravity="center"
+                android:paddingLeft="50dip"
+                android:paddingRight="50dip" />
+        </HorizontalScrollView>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dip"
+        android:text="" >
+    </TextView>
+
+</FrameLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="100dip" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@id/setting_teach_pass_btn"
+            android:layout_width="300.0dip"
+            android:layout_height="50.0dip"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20.0dip"
+            android:background="@drawable/video_details_btn_selector"
+            android:text="重新加锁"
+            android:textColor="@color/detail_point"
+            android:textSize="24.0dip" />
+
+        <Button
+            android:id="@id/setting_edit_pass_btn"
+            android:layout_width="300.0dip"
+            android:layout_height="50.0dip"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20.0dip"
+            android:layout_marginTop="20.0dip"
+            android:background="@drawable/video_details_btn_selector"
+            android:text="家长控制密码设置"
+            android:textColor="@color/detail_point"
+            android:textSize="24.0dip" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@id/setting_clear_all_btn"
+            android:layout_width="300.0dip"
+            android:layout_height="50.0dip"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20.0dip"
+            android:background="@drawable/video_details_btn_selector"
+            android:text="一键清理缓存"
+            android:textColor="@color/detail_point"
+            android:textSize="24.0dip" />
+
+        <Button
+            android:id="@id/setting_reboot"
+            android:layout_width="300.0dip"
+            android:layout_height="50.0dip"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20dip"
+            android:layout_marginTop="20.0dip"
+            android:background="@drawable/video_details_btn_selector"
+            android:text="重新启动"
+            android:textColor="@color/detail_point"
+            android:textSize="24.0dip" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@id/setting_cancel_pass"
+            android:layout_width="300.0dip"
+            android:layout_height="50.0dip"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20.0dip"
+            android:background="@drawable/video_details_btn_selector"
+            android:text="解锁家长控制"
+            android:textColor="@color/detail_point"
+            android:textSize="24.0dip" />
+
+        <Button
+            android:layout_width="300.0dip"
+            android:layout_height="50.0dip"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20.0dip"
+            android:layout_marginTop="20.0dip"
+            android:background="@drawable/video_details_btn_selector"
+            android:text=""
+            android:textColor="@color/detail_point"
+            android:textSize="24.0dip"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+</LinearLayout>

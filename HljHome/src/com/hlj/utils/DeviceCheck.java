@@ -1,0 +1,238 @@
+package com.hlj.utils;
+
+import android.content.Context;
+import android.net.DhcpInfo;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
+import android.telephony.TelephonyManager;
+
+import com.live.video.constans.DeviceInfo;
+import com.live.video.constans.EthernetInfo;
+import com.live.video.constans.HomeConstants;
+import com.live.video.constans.WifiimplInfo;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.UUID;
+
+/**
+ * 
+ * @author hyc
+ * 
+ */
+public class DeviceCheck {
+
+	/**
+	 * androidId
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public static String getAndroidId(Context context) {
+		String str = null;
+		str = DeviceInfo.getOnlyId(context);
+		return str;
+	}
+
+	/**
+	 * 以太网MAC
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public static String getEthernetMac(Context context) {
+		String ethernetMac = "00.00.00.00.00.00";
+		// if (NetUtils.getAPNType(context) != -1) {
+		// if (NetUtils.isEthernetConnect(context)) {
+		ethernetMac = EthernetInfo.getMacAddress();
+		// }
+		// }
+		if (StringTools.isNullOrEmpty(ethernetMac)) {
+			ethernetMac = fetch_ethmac();
+		}
+
+		return ethernetMac;
+	}
+
+	/**
+	 * 抓取有线mac地址
+	 * 
+	 * @return
+	 */
+	public static String fetch_ethmac() {
+		String result = null;
+		String[] args = { "/system/bin/cat", "/sys/class/net/eth0/address" };
+		result = run(args, "system/bin/");
+		result = result.substring(0, result.indexOf("\n")).toUpperCase();
+		// 防止获取不到返回乱码
+		if (result.length() > 27) {
+			result = result.substring(0, 27);
+		}
+		return result;
+	}
+
+	/**
+	 * 抓取wifi mac地址
+	 * 
+	 * @return
+	 */
+	public static String fetch_wlanmac() {
+		String result = null;
+		try {
+			String[] args = { "/system/bin/cat", "/sys/class/net/wlan0/address" };
+			result = run(args, "system/bin/");
+			result = result.substring(0, result.indexOf("\n"));
+			// 防止获取不到返回乱码
+			if (result.length() > 28) {
+				result = result.substring(0, 28);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return result;
+	}
+
+	public synchronized static String run(String[] cmd, String workdirectory) {
+		String result = "";
+		try {
+			ProcessBuilder builder = new ProcessBuilder(cmd);
+			InputStream in = null;
+			if (workdirectory != null) {
+				builder.directory(new File(workdirectory));
+				builder.redirectErrorStream(true);
+				Process process = builder.start();
+				in = process.getInputStream();
+				byte[] re = new byte[1024];
+				while (in.read(re) != -1)
+					result = result + new String(re);
+			}
+			if (in != null) {
+				in.close();
+			}
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		return result;
+	}
+
+	/**
+	 * 获取wifi的mac地址
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public static String getWifiMac(Context context) {
+		String wifiMac = "00.00.00.00.00.00";
+		WifiManager wifiMgr = (WifiManager) context
+				.getSystemService(Context.WIFI_SERVICE);
+		WifiInfo info = (null == wifiMgr ? null : wifiMgr.getConnectionInfo());
+		if (null != info && !StringTools.isNullOrEmpty(info.getMacAddress())) {
+			wifiMac = info.getMacAddress();
+			if (StringTools.isNullOrEmpty(wifiMac)) {
+				wifiMac = fetch_wlanmac();
+			}
+		}
+		return wifiMac;
+	}
+
+	/**
+	 * 获取网关地址
+	 * 
+	 * @param mContext
+	 * @return
+	 */
+	public static String getGateWay(Context mContext) {
+		WifiManager wifiMgr = (WifiManager) mContext
+				.getSystemService(Context.WIFI_SERVICE);
+		DhcpInfo dhcpInfo = null;
+		if (wifiMgr != null) {
+			dhcpInfo = wifiMgr.getDhcpInfo();
+		}
+		if (dhcpInfo != null) {
+			return int2IPStr(dhcpInfo.gateway);
+		}
+		return "";
+	}
+
+	/**
+	 * int转化为String
+	 * 
+	 * @param ip
+	 * @return
+	 */
+	public static String int2IPStr(int ip) {
+		int[] b = new int[4];
+		b[0] = (ip >> 24) & 0xff;
+		b[1] = (ip >> 16) & 0xff;
+		b[2] = (ip >> 8) & 0xff;
+		b[3] = (ip & 0xff);
+		String ipStr;
+		ipStr = Integer.toString(b[3]) + "." + Integer.toString(b[2]) + "."
+				+ Integer.toString(b[1]) + "." + Integer.toString(b[0]);
+		Logger.log("ipStr:" + ipStr);
+		return ipStr;
+	}
+
+	public static String shareDeviceUsersUniqueId() {
+		String deviceUsersUniqueId = null;
+		try {
+			deviceUsersUniqueId = FileUtils.readFile(
+					HomeConstants.deviceUsersUniqueIdPath).trim();
+		} catch (IOException e) {
+			e.printStackTrace(); 
+		}
+		return deviceUsersUniqueId;
+	}
+
+	public static String shareUserId() {
+		String deviceUsersUniqueId = null;
+		try {
+			deviceUsersUniqueId = FileUtils.readFile(HomeConstants.userIdPath)
+					.trim();
+		} catch (IOException e) {
+			e.printStackTrace(); // To change body of catch statement use File |
+									// Settings | File Templates.
+		}
+		return deviceUsersUniqueId;
+	}
+
+	/**
+	 * 获取UUID
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public static String getUUID(Context context) {
+		TelephonyManager tm = (TelephonyManager) context
+				.getSystemService(Context.TELEPHONY_SERVICE);
+
+		String uuid = "";
+
+		String tmDevice = tm.getDeviceId();
+		String tmSerial = tm.getSimSerialNumber();
+		String androidId = getAndroidId(context);
+
+		UUID deviceUuid = new UUID(androidId.hashCode(),
+				((long) tmDevice.hashCode() << 32) | tmSerial.hashCode());
+
+		uuid = deviceUuid.toString();
+
+		return uuid;
+	}
+
+	/**
+	 * 获取随机UUID
+	 * 
+	 * @return
+	 */
+	public static String getRandomUUID() {
+		UUID uuid = UUID.randomUUID();
+
+		String uniqueId = uuid.toString();
+
+		return uniqueId;
+	}
+}

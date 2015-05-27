@@ -1,0 +1,175 @@
+package com.hlj.widget;
+
+import java.io.IOException;
+
+import com.hj.widget.CommonToast;
+import com.hlj.HomeActivity.R;
+import com.hlj.net.GetPwdRequest;
+import com.hlj.net.GetPwdResponse;
+import com.hlj.net.HttpHomeLoadDataTask;
+import com.hlj.utils.CommonTools;
+import com.hlj.utils.FileUtils;
+import com.hlj.utils.StringTools;
+
+import com.live.video.constans.HomeConstants;
+import com.live.video.net.callback.IUpdateData;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.drawable.BitmapDrawable;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.PopupWindow;
+
+/**
+ * Created with IntelliJ IDEA. User: ${shime} Date: 13-11-18 Time: 下午12:08 To
+ * change this template use File | Settings | File Templates.
+ */
+public class PwdPopWindow extends View {
+	private CommonToast toast;
+	private View view;
+	private View parentView;
+	private PopupWindow popupWindow;
+	private Context mContext;
+	private EditText pwd;
+	private Button confirm, cancel;
+	public String right = "1";
+	public String cancles = "0";
+	private String ePwd;
+	private PwdCallBack callBack;
+
+	public PwdPopWindow(Context context, View view, PwdCallBack callBack) {
+		super(context);
+		this.mContext = context;
+		this.parentView = view;
+		this.callBack = callBack;
+		initView();
+	}
+
+	public PwdPopWindow(Context context, View view, PwdCallBack callBack,
+			AttributeSet attrs) {
+		super(context, attrs);
+		this.mContext = context;
+		this.parentView = view;
+		this.callBack = callBack;
+		initView();
+	}
+
+	public PwdPopWindow(Context context, View view, PwdCallBack callBack,
+			AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
+		this.mContext = context;
+		this.parentView = view;
+		this.callBack = callBack;
+		initView();
+	}
+
+	private void initView() {
+		view = LayoutInflater.from(mContext).inflate(R.layout.pwd_layout, null);
+		popupWindow = new PopupWindow(view);
+
+		popupWindow.setBackgroundDrawable(new BitmapDrawable());
+		// 设置焦点
+		popupWindow.setFocusable(true);
+		// 设置点击其他地方 就消失
+		popupWindow.setOutsideTouchable(true);
+		popupWindow.showAtLocation(parentView, Gravity.CENTER,
+				CommonTools.getScreenWidth(mContext),
+				CommonTools.getScreenHeight(mContext));
+		popupWindow.update(0, 0, 400, 230);
+		pwd = (EditText) view.findViewById(R.id.pwd);
+		confirm = (Button) view.findViewById(R.id.confirm);
+		cancel = (Button) view.findViewById(R.id.cancel);
+
+		confirm.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				ePwd = pwd.getText().toString();
+				if (StringTools.isNullOrEmpty(ePwd)) {
+					showFailToast("密码不能为空");
+				} else {
+					getPwdInfo();
+				}
+			}
+		});
+		cancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				pwd.setText("");
+				// callBack.call("0000000000");
+				popupWindow.dismiss();
+			}
+		});
+
+	}
+
+	private void getPwdInfo() {
+		GetPwdRequest request = new GetPwdRequest(mContext);
+		request.lockPasswd = ePwd;
+		new HttpHomeLoadDataTask(mContext, pwdCallBack, false, "", true)
+				.execute(request);
+	}
+
+	IUpdateData pwdCallBack = new IUpdateData() {
+		@Override
+		public void updateUi(Object o) {
+			GetPwdResponse response = new GetPwdResponse();
+			response.paseRespones(o.toString());
+			Log.d("-================", o.toString());
+			String s = response.data.login;
+			if (s.equals("1")) {
+				HomeConstants.isTempLock = s;
+
+				// SharedPreferences.Editor editor = mContext
+				// .getSharedPreferences("setLOCK",
+				// Context.MODE_MULTI_PROCESS).edit();
+				// editor.putString("isTempLock", HomeConstants.isTempLock);
+				// editor.commit();
+
+				// 此处换为文件共享
+				try {
+					FileUtils.saveData(HomeConstants.isTempLock,
+							HomeConstants.isTempLockPath);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+				callBack.call(HomeConstants.isTempLock + "");
+				showSuccesToast("密码正确，解锁成功");
+			} else if (s.equals("2")) {
+				showFailToast("密码输入错误,请重新输入");
+			}
+		}
+
+		@Override
+		public void handleErrorData(String info) {
+			showFailToast("密码输入错误,请重新输入");
+		}
+	};
+
+	private void showSuccesToast(String str) {
+		toast = new CommonToast(mContext);
+		toast.setText(str);
+		toast.setIcon(R.drawable.toast_smile);
+		toast.show();
+		pwd.setText("");
+		popupWindow.dismiss();
+	}
+
+	private void showFailToast(String str) {
+		toast = new CommonToast(mContext);
+		toast.setText(str);
+		toast.setIcon(R.drawable.toast_err);
+		toast.show();
+		pwd.setText("");
+	}
+
+	public static abstract interface PwdCallBack {
+		public abstract void call(String str);
+	}
+}

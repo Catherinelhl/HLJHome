@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:nextFocusUp="@id/play_collect"
+    android:orientation="vertical"
+    android:paddingTop="40.0dip" >
+
+    <ImageView
+        android:id="@id/play_collect_reflected_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="400.0dip"
+        android:gravity="center_horizontal" />
+
+    <RelativeLayout
+        android:id="@id/play_colection_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal" >
+
+        <HorizontalScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:nextFocusUp="@id/play_collect"
+            android:scrollbars="horizontal" >
+
+            <com.hlj.view.MovieLayout
+                android:id="@+id/movieLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="404.0dip"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:nextFocusUp="@id/play_collect"
+                android:paddingLeft="50dip"
+                android:paddingRight="50dip" />
+        </HorizontalScrollView>
+    </RelativeLayout>
+
+</FrameLayout>

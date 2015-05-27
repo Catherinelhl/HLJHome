@@ -1,0 +1,66 @@
+package com.hlj.net;
+
+import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.hlj.utils.JsonTools;
+import com.hlj.utils.Logger;
+import com.hlj.view.VideoInfo;
+
+public class GetDeviceResponse extends BaseResponse {
+
+	public String infos;
+	public String contact;
+	public String logo;
+	public String startBg;
+	public String pageBg;
+
+	public String groupTitle;
+
+	public String isGrade;
+
+	public String startLogo;
+	public String epgId;
+
+	@Override
+	public void paseRespones(String js) {
+
+		try {
+			JSONObject json = new JSONObject(js);
+
+			JSONObject obj = json.getJSONObject("item");
+			// infos = obj.getString("infos");
+			// contact = obj.getString("contact");
+			infos = JsonTools.getString(obj, "infos");
+			contact = JsonTools.getString(obj, "contact");
+			logo = JsonTools.getString(obj, "logo");
+			startBg = JsonTools.getString(obj, "startBg");
+			pageBg = JsonTools.getString(obj, "pageBg");
+
+			isGrade = JsonTools.getString(obj, "isGrade");
+			groupTitle = JsonTools.getString(obj, "groupTitle");
+
+			startLogo = JsonTools.getString(obj, "startLogo");
+			epgId = JsonTools.getString(obj, "epgId");
+
+			Logger.log("infos:" + infos);
+			Logger.log("contact:" + contact);
+			Logger.log("logo:" + logo);
+			Logger.log("startBg:" + startBg);
+			Logger.log("pageBg:" + pageBg);
+			Logger.log("isGrade:" + isGrade);
+			Logger.log("groupTitle:" + groupTitle);
+
+			Logger.log("startLogo:" + startLogo);
+			Logger.log("epgId:" + epgId);
+
+		} catch (JSONException e) {
+			Logger.log(e.toString());
+		}
+
+	}
+
+}

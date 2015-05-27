@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/text"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="0.0dip"
+    android:background="@drawable/study_list_item_bg"
+    android:ellipsize="marquee"
+    android:gravity="center_vertical"
+    android:marqueeRepeatLimit="marquee_forever"
+    android:paddingLeft="5.0dip"
+    android:singleLine="true"
+    android:textColor="@drawable/art_item_textcolor_selector"
+    android:textSize="20.0dip" />

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:background="@drawable/live_channel_list_item_bg"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:paddingLeft="25.0dip"
+    android:paddingRight="25.0dip" >
+
+    <TextView
+        android:layout_width="50.0dip"
+        android:layout_height="fill_parent"
+        android:layout_marginRight="12.0dip"
+        android:gravity="center"
+        android:textColor="@color/channel_list_item_text"
+        android:textSize="24.0px" />
+
+    <TextView
+        android:id="@+id/chan_tv"
+        android:layout_width="0.0dip"
+        android:layout_height="fill_parent"
+        android:layout_marginRight="12.0dip"
+        android:layout_weight="1.0"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:textColor="@color/channel_list_item_text"
+        android:textSize="24.0px" />
+
+    <ImageView
+        android:id="@+id/chan_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_marginRight="15.0dip"
+        android:visibility="gone"
+        android:src="@drawable/video_details_hd" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+         android:visibility="gone"
+        android:src="@drawable/live_channel_list_item_fav" />
+
+</LinearLayout>

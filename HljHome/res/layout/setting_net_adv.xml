@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@drawable/launcher52_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="horizontal" android:paddingLeft="35.0dip" android:paddingTop="10.0dip" android:paddingRight="35.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <TextView android:textSize="36.0dip" android:textColor="#ffb2b2b2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="高级设置" />
+        <ImageView android:background="#ffb2b2b2" android:layout_width="2.0dip" android:layout_height="45.0dip" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" />
+    </LinearLayout>
+    <LinearLayout android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="50.0dip" android:layout_marginBottom="30.0dip">
+        <LinearLayout android:orientation="vertical" android:background="@drawable/setup_bg_left" android:layout_width="440.0dip" android:layout_height="480.0dip">
+            <Button android:id="@id/net_adv_wifi_state" android:text="无线状态" style="@style/set_button_leftpart" />
+            <Button android:id="@id/net_adv_wifi_on_off" android:text="开启无线" style="@style/set_button_leftpart" />
+        </LinearLayout>
+        <TextView android:textSize="22.0dip" android:textColor="@color/white" android:gravity="top|left|center" android:id="@id/user_set_main_step0_tv" android:background="@drawable/setup_bg_right" android:paddingLeft="30.0dip" android:paddingTop="40.0dip" android:paddingRight="30.0dip" android:layout_width="440.0dip" android:layout_height="480.0dip" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" android:layout_marginTop="20.0dip">
+        <ImageView android:id="@id/user_set_main_back" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/osd_key_back" />
+        <TextView android:textSize="18.0dip" android:textColor="@color/dark" android:id="@id/user_set_main_back_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="上一个页面" />
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:src="@drawable/osd_key_ok" />
+        <TextView android:textSize="18.0dip" android:textColor="@color/dark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="确定/下一个界面" />
+        <ImageView android:id="@id/user_set_main_menu" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:src="@drawable/osd_key_option" />
+        <TextView android:textSize="18.0dip" android:textColor="@color/dark" android:id="@id/user_set_main_menu_tv" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="操作" />
+    </LinearLayout>
+</LinearLayout>

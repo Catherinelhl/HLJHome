@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+                >
+    <FrameLayout
+            android:id="@id/app_fl_0"
+            android:layout_width="399.0dip"
+            android:layout_height="397.0dip"
+            android:layout_marginLeft="108.0dip">
+        <ImageView
+                android:id="@id/app_bg_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20.0dip"
+                android:layout_marginTop="20.0dip"
+                android:src="@drawable/shadow_left_top" />
+        <ImageView
+                android:id="@id/app_poster_0"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusUp="@id/application"
+                android:clickable="true"
+                android:layout_width="200.0dip"
+                android:layout_height="200.0dip"
+                android:layout_marginLeft="20.0dip"
+                android:layout_marginTop="20.0dip" />
+        <ImageView
+                android:id="@id/app_new_0"
+                android:visibility="gone"
+                android:layout_width="54.0dip"
+                android:layout_height="45.0dip"
+                android:layout_marginLeft="20.0dip"
+                android:layout_marginTop="20.0dip" />
+        <TextView
+                android:textSize="24.0dip"
+                android:textColor="@color/white"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:id="@id/app_name_0"
+                android:layout_width="200.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20.0dip"
+                android:layout_marginTop="180.0dip"
+                android:text=""
+                android:singleLine="true" />
+    </FrameLayout>
+    <FrameLayout
+            android:id="@id/app_fl_1"
+            android:layout_width="555.0dip"
+            android:layout_height="377.0dip"
+            android:layout_marginLeft="144.0dip">
+        <ImageView
+                android:id="@id/app_bg_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20.0dip"
+                android:src="@drawable/shadow_top_center" />
+        <ImageView
+                android:id="@id/app_poster_1"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusUp="@id/application"
+                android:clickable="true"
+                android:layout_width="200.0dip"
+                android:layout_height="200.0dip"
+                android:layout_marginLeft="190.0dip"
+                android:layout_marginTop="20.0dip"
+                android:scaleType="fitXY" />
+        <ImageView
+                android:id="@id/app_new_1"
+                android:visibility="gone"
+                android:layout_width="54.0dip"
+                android:layout_height="45.0dip"
+                android:layout_marginLeft="190.0dip"
+                android:layout_marginTop="20.0dip" />
+        <TextView
+                android:textSize="24.0dip"
+                android:textColor="@color/white"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:id="@id/app_name_1"
+                android:layout_width="200.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="190.0dip"
+                android:layout_marginTop="180.0dip"
+                android:text=""
+                android:singleLine="true" />
+    </FrameLayout>
+    <FrameLayout
+            android:id="@id/app_fl_2"
+            android:layout_width="555.0dip"
+            android:layout_height="377.0dip"
+            android:layout_marginLeft="349.0dip">
+        <ImageView
+                android:id="@id/app_bg_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20.0dip"
+                android:src="@drawable/shadow_top_center" />
+        <ImageView
+                android:id="@id/app_poster_2"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusUp="@id/application"
+                android:clickable="true"
+                android:layout_width="200.0dip"
+                android:layout_height="200.0dip"
+                android:layout_marginLeft="190.0dip"
+                android:layout_marginTop="20.0dip"
+                android:scaleType="fitXY" />
+        <ImageView
+                android:id="@id/app_new_2"
+                android:visibility="gone"
+                android:layout_width="54.0dip"
+                android:layout_height="45.0dip"
+                android:layout_marginLeft="190.0dip"
+                android:layout_marginTop="20.0dip" />
+        <TextView
+                android:textSize="24.0dip"
+                android:textColor="@color/white"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:id="@id/app_name_2"
+                android:layout_width="200.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="190.0dip"
+                android:layout_marginTop="180.0dip"
+                android:text=""
+                android:singleLine="true" />
+    </FrameLayout>
+    <FrameLayout
+            android:id="@id/app_fl_3"
+            android:layout_width="555.0dip"
+            android:layout_height="377.0dip"
+            android:layout_marginLeft="554.0dip">
+        <ImageView
+            android:id="@id/app_bg_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.0dip"
+            android:src="@drawable/shadow_top_center" />
+        <ImageView
+            android:id="@id/app_poster_3"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:nextFocusUp="@id/application"
+            android:clickable="true"
+            android:layout_width="200.0dip"
+            android:layout_height="200.0dip"
+            android:layout_marginLeft="190.0dip"
+            android:layout_marginTop="20.0dip"
+            android:scaleType="fitXY" />
+        <ImageView
+             android:id="@id/app_new_3"
+             android:visibility="gone"
+             android:layout_width="54.0dip"
+             android:layout_height="45.0dip"
+             android:layout_marginLeft="190.0dip"
+             android:layout_marginTop="20.0dip" />
+        <TextView
+             android:textSize="24.0dip"
+             android:textColor="@color/white"
+             android:ellipsize="end"
+             android:gravity="center"
+             android:id="@id/app_name_3"
+             android:layout_width="200.0dip"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="190.0dip"
+             android:layout_marginTop="180.0dip"
+             android:text=""
+             android:singleLine="true" />
+    </FrameLayout>
+    <FrameLayout
+             android:id="@id/app_fl_4"
+             android:layout_width="399.0dip"
+             android:layout_height="397.0dip"
+             android:layout_marginLeft="770.0dip">
+        <ImageView
+             android:id="@id/app_bg_4"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="20.0dip"
+             android:layout_marginRight="20.0dip"
+             android:src="@drawable/shadow_right_top" />
+        <ImageView
+                android:id="@id/app_poster_4"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusUp="@id/application"
+                android:clickable="true"
+                android:layout_width="200.0dip"
+                android:layout_height="200.0dip"
+                android:layout_marginLeft="179.0dip"
+                android:layout_marginTop="20.0dip"
+                android:scaleType="fitXY" />
+        <ImageView
+                android:id="@id/app_new_4"
+                android:visibility="gone"
+                android:layout_width="54.0dip"
+                android:layout_height="45.0dip"
+                android:layout_marginLeft="179.0dip"
+                android:layout_marginTop="20.0dip" />
+        <TextView
+                android:textSize="24.0dip"
+                android:textColor="@color/white"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:id="@id/app_name_4"
+                android:layout_width="200.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="179.0dip"
+                android:layout_marginTop="180.0dip"
+                android:text=""
+                android:singleLine="true" />
+    </FrameLayout>
+    <FrameLayout
+            android:id="@id/app_fl_5"
+            android:layout_width="481.0dip"
+            android:layout_height="438.0dip"
+            android:layout_marginTop="105.0dip">
+        <ImageView
+                android:id="@id/app_bg_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/shadow_left_bottom_a" />
+        <ImageView
+                android:id="@id/app_poster_5"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:clickable="true"
+                android:layout_width="200.0dip"
+                android:layout_height="200.0dip"
+                android:layout_marginLeft="128.0dip"
+                android:layout_marginTop="120.0dip"
+                android:scaleType="fitXY" />
+        <ImageView
+                android:id="@id/app_new_5"
+                android:visibility="gone"
+                android:layout_width="54.0dip"
+                android:layout_height="45.0dip"
+                android:layout_marginLeft="128.0dip"
+                android:layout_marginTop="120.0dip" />
+        <TextView
+                android:textSize="24.0dip"
+                android:textColor="@color/white"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:id="@id/app_name_5"
+                android:layout_width="200.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="128.0dip"
+                android:layout_marginTop="280.0dip"
+                android:text=""
+                android:singleLine="true" />
+    </FrameLayout>
+    <FrameLayout
+            android:id="@id/app_fl_6"
+            android:layout_width="587.0dip"
+            android:layout_height="438.0dip"
+            android:layout_marginLeft="144.0dip"
+            android:layout_marginTop="105.0dip">
+        <ImageView
+                android:id="@id/app_bg_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/shadow_bottom_center" />
+        <ImageView
+                android:id="@id/app_poster_6"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:clickable="true"
+                android:layout_width="200.0dip"
+                android:layout_height="200.0dip"
+                android:layout_marginLeft="190.0dip"
+                android:layout_marginTop="120.0dip"
+                android:scaleType="fitXY" />
+        <ImageView
+                android:id="@id/app_new_6"
+                android:visibility="gone"
+                android:layout_width="54.0dip"
+                android:layout_height="45.0dip"
+                android:layout_marginLeft="190.0dip"
+                android:layout_marginTop="120.0dip" />
+        <TextView
+                android:textSize="24.0dip"
+                android:textColor="@color/white"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:id="@id/app_name_6"
+                android:layout_width="200.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="190.0dip"
+                android:layout_marginTop="280.0dip"
+                android:text=""
+                android:singleLine="true" />
+    </FrameLayout>
+    <FrameLayout
+            android:id="@id/app_fl_7"
+            android:layout_width="587.0dip"
+            android:layout_height="438.0dip"
+            android:layout_marginLeft="349.0dip"
+            android:layout_marginTop="105.0dip">
+        <ImageView
+                android:id="@id/app_bg_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/shadow_bottom_center" />
+        <ImageView
+                android:id="@id/app_poster_7"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:clickable="true"
+                android:layout_width="200.0dip"
+                android:layout_height="200.0dip"
+                android:layout_marginLeft="190.0dip"
+                android:layout_marginTop="120.0dip"
+                android:scaleType="fitXY" />
+        <ImageView
+                android:id="@id/app_new_7"
+                android:visibility="gone"
+                android:layout_width="54.0dip"
+                android:layout_height="45.0dip"
+                android:layout_marginLeft="190.0dip"
+                android:layout_marginTop="120.0dip" />
+        <TextView
+                android:textSize="24.0dip"
+                android:textColor="@color/white"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:id="@id/app_name_7"
+                android:layout_width="200.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="190.0dip"
+                android:layout_marginTop="280.0dip"
+                android:text=""
+                android:singleLine="true" />
+    </FrameLayout>
+    <FrameLayout
+            android:id="@id/app_fl_8"
+            android:layout_width="587.0dip"
+            android:layout_height="438.0dip"
+            android:layout_marginLeft="554.0dip"
+            android:layout_marginTop="105.0dip">
+        <ImageView
+                android:id="@id/app_bg_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/shadow_bottom_center" />
+        <ImageView
+                android:id="@id/app_poster_8"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:clickable="true"
+                android:layout_width="200.0dip"
+                android:layout_height="200.0dip"
+                android:layout_marginLeft="190.0dip"
+                android:layout_marginTop="120.0dip" />
+        <ImageView
+                android:id="@id/app_new_8"
+                android:visibility="gone"
+                android:layout_width="54.0dip"
+                android:layout_height="45.0dip"
+                android:layout_marginLeft="190.0dip"
+                android:layout_marginTop="120.0dip" />
+        <TextView
+                android:textSize="24.0dip"
+                android:textColor="@color/white"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:id="@id/app_name_8"
+                android:layout_width="200.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="190.0dip"
+                android:layout_marginTop="280.0dip"
+                android:scaleType="fitXY"
+                android:text=""
+                android:singleLine="true" />
+    </FrameLayout>
+    <FrameLayout
+            android:id="@id/app_fl_9"
+            android:layout_width="481.0dip"
+            android:layout_height="438.0dip"
+            android:layout_marginLeft="787.0dip"
+            android:layout_marginTop="105.0dip">
+        <ImageView
+                android:id="@id/app_bg_9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/shadow_right_bottom_a" />
+        <ImageView
+                android:id="@id/app_poster_9"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:clickable="true"
+                android:layout_width="200.0dip"
+                android:layout_height="200.0dip"
+                android:layout_marginLeft="162.0dip"
+                android:layout_marginTop="120.0dip"
+                android:scaleType="fitXY" />
+        <ImageView
+                android:id="@id/app_new_9"
+                android:visibility="gone"
+                android:layout_width="54.0dip"
+                android:layout_height="45.0dip"
+                android:layout_marginLeft="162.0dip"
+                android:layout_marginTop="120.0dip" />
+        <TextView
+                android:textSize="24.0dip"
+                android:textColor="@color/white"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:id="@id/app_name_9"
+                android:layout_width="200.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="162.0dip"
+                android:layout_marginTop="280.0dip"
+                android:text=""
+                android:singleLine="true" />
+    </FrameLayout>
+</RelativeLayout>

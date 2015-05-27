@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:paddingTop="15.0dip" android:scrollbars="none" android:descendantFocusability="afterDescendants" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="horizontal" android:id="@id/set_defined" android:background="@drawable/set_item_selector" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <ImageView android:layout_width="60.0dip" android:layout_height="60.0dip" android:src="@drawable/defined_icon" />
+            <TextView android:textSize="28.0dip" android:textColor="@color/white" android:gravity="left" android:layout_gravity="center" android:layout_width="450.0dip" android:layout_height="wrap_content" android:text="选择直播列表" />
+            <ImageView android:layout_gravity="center_vertical" android:id="@id/set_defined_left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_left" />
+            <TextView android:textSize="28.0dip" android:textColor="@color/white" android:gravity="center_horizontal" android:layout_gravity="center" android:id="@id/set_defined_tv" android:layout_width="250.0dip" android:layout_height="wrap_content" android:text="官方默认" />
+            <ImageView android:layout_gravity="center_vertical" android:id="@id/set_defined_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_right" />
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@id/set_renew" android:background="@drawable/set_item_selector" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="60.0dip">
+            <ImageView android:layout_width="60.0dip" android:layout_height="60.0dip" android:src="@drawable/live_icon" />
+            <TextView android:textSize="28.0dip" android:textColor="@color/white" android:gravity="left" android:layout_gravity="center" android:layout_width="450.0dip" android:layout_height="wrap_content" android:text="更新直播列表" />
+            <ImageView android:layout_gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_left" />
+            <TextView android:textSize="28.0dip" android:textColor="@color/white" android:gravity="center_horizontal" android:layout_gravity="center" android:id="@id/set_renew_tv" android:layout_width="250.0dip" android:layout_height="wrap_content" android:text="点击执行" />
+            <ImageView android:layout_gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_right" />
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@id/set_scalor" android:background="@drawable/set_item_selector" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="120.0dip">
+            <ImageView android:layout_width="60.0dip" android:layout_height="60.0dip" android:src="@drawable/scale_icon" />
+            <TextView android:textSize="28.0dip" android:textColor="@color/white" android:gravity="left" android:layout_gravity="center" android:layout_width="450.0dip" android:layout_height="wrap_content" android:text="画面显示比例" />
+            <ImageView android:layout_gravity="center_vertical" android:id="@id/set_scalor_left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_left" />
+            <TextView android:textSize="28.0dip" android:textColor="@color/white" android:gravity="center_horizontal" android:layout_gravity="center" android:id="@id/set_scalor_tv" android:layout_width="250.0dip" android:layout_height="wrap_content" android:text="16:9" />
+            <ImageView android:layout_gravity="center_vertical" android:id="@id/set_scalor_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_right" />
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@id/set_sharp" android:background="@drawable/set_item_selector" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="180.0dip">
+            <ImageView android:layout_width="60.0dip" android:layout_height="60.0dip" android:src="@drawable/sharp_icon" />
+            <TextView android:textSize="28.0dip" android:textColor="@color/white" android:gravity="left" android:layout_gravity="center" android:layout_width="450.0dip" android:layout_height="wrap_content" android:text="点播清晰度选择" />
+            <ImageView android:layout_gravity="center_vertical" android:id="@id/set_sharp_left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_left" />
+            <TextView android:textSize="28.0dip" android:textColor="@color/white" android:gravity="center_horizontal" android:layout_gravity="center" android:id="@id/set_sharp_tv" android:layout_width="250.0dip" android:layout_height="wrap_content" android:text="高清" />
+            <ImageView android:layout_gravity="center_vertical" android:id="@id/set_sharp_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_right" />
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@id/set_lr" android:background="@drawable/set_item_selector" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="240.0dip">
+            <ImageView android:layout_width="60.0dip" android:layout_height="60.0dip" android:src="@drawable/lr_icon" />
+            <TextView android:textSize="28.0dip" android:textColor="@color/white" android:gravity="left" android:layout_gravity="center" android:layout_width="450.0dip" android:layout_height="wrap_content" android:text="直播左右键功能设定" />
+            <ImageView android:layout_gravity="center_vertical" android:id="@id/set_lr_left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_left" />
+            <TextView android:textSize="28.0dip" android:textColor="@color/white" android:gravity="center_horizontal" android:layout_gravity="center" android:id="@id/set_lr_tv" android:layout_width="250.0dip" android:layout_height="wrap_content" android:text="左右键换源" />
+            <ImageView android:layout_gravity="center_vertical" android:id="@id/set_lr_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_right" />
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@id/set_ud" android:background="@drawable/set_item_selector" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="300.0dip">
+            <ImageView android:layout_width="60.0dip" android:layout_height="60.0dip" android:src="@drawable/ud_icon" />
+            <TextView android:textSize="28.0dip" android:textColor="@color/white" android:gravity="left" android:layout_gravity="center" android:layout_width="450.0dip" android:layout_height="wrap_content" android:text="直播上下键功能设定" />
+            <ImageView android:layout_gravity="center_vertical" android:id="@id/set_ud_left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_left" />
+            <TextView android:textSize="28.0dip" android:textColor="@color/white" android:gravity="center_horizontal" android:layout_gravity="center" android:id="@id/set_ud_tv" android:layout_width="250.0dip" android:layout_height="wrap_content" android:text="上键下一个频道" />
+            <ImageView android:layout_gravity="center_vertical" android:id="@id/set_ud_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_right" />
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@id/set_jump" android:background="@drawable/set_item_selector" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="360.0dip">
+            <ImageView android:layout_width="60.0dip" android:layout_height="60.0dip" android:src="@drawable/jump_icon" />
+            <TextView android:textSize="28.0dip" android:textColor="@color/white" android:gravity="left" android:layout_gravity="center" android:layout_width="450.0dip" android:layout_height="wrap_content" android:text="跳过片头片尾" />
+            <ImageView android:layout_gravity="center_vertical" android:id="@id/set_jump_left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_left" />
+            <TextView android:textSize="28.0dip" android:textColor="@color/white" android:gravity="center_horizontal" android:layout_gravity="center" android:id="@id/set_jump_tv" android:layout_width="250.0dip" android:layout_height="wrap_content" android:text="开启" />
+            <ImageView android:layout_gravity="center_vertical" android:id="@id/set_jump_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_right" />
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@id/set_autolive" android:background="@drawable/set_item_selector" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="420.0dip">
+            <ImageView android:layout_width="60.0dip" android:layout_height="60.0dip" android:src="@drawable/set_icon_startlive" />
+            <TextView android:textSize="28.0dip" android:textColor="@color/white" android:gravity="left" android:layout_gravity="center" android:layout_width="450.0dip" android:layout_height="wrap_content" android:text="快速进入直播" />
+            <ImageView android:layout_gravity="center_vertical" android:id="@id/set_autolive_left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_left" />
+            <TextView android:textSize="28.0dip" android:textColor="@color/white" android:gravity="center_horizontal" android:layout_gravity="center" android:id="@id/set_autolive_tv" android:layout_width="250.0dip" android:layout_height="wrap_content" android:text="停用" />
+            <ImageView android:layout_gravity="center_vertical" android:id="@id/set_autolive_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_right" />
+        </LinearLayout>
+    </FrameLayout>
+</ScrollView>

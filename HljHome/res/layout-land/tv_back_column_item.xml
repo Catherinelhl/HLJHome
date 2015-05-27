@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="446.0dip"
+    android:layout_height="50.0dip"
+    android:background="@drawable/listview_item_bg_selector" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="10.0dip"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/tv_back_time"
+            android:layout_width="60.0dip"
+            android:layout_height="wrap_content"
+            android:text="12:34"
+            android:textColor="@drawable/channel_item_textcolor_selector"
+            android:textSize="18.0dip" />
+
+        <TextView
+            android:id="@+id/tv_back_name"
+            android:layout_width="wrap_content"
+            android:layout_height="50.0dip"
+            android:layout_marginLeft="20dip"
+            android:ellipsize="marquee"
+            android:gravity="center_vertical"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text="这里是栏目的名称"
+            android:textColor="@drawable/channel_item_textcolor_selector"
+            android:textSize="24.0dip" />
+
+        <TextView
+            android:id="@+id/tv_back_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="50.0dip"
+            android:layout_marginLeft="20dip"
+            android:ellipsize="marquee"
+            android:gravity="center_vertical"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@drawable/channel_item_textcolor_selector"
+            android:textSize="24.0dip" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/tv_back_log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center"
+        android:layout_marginRight="10.0dip"
+        android:background="@drawable/huikan"
+        android:visibility="visible" />
+
+</FrameLayout>

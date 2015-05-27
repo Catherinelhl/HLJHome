@@ -1,0 +1,758 @@
+package com.hlj.view;
+
+import java.util.ArrayList;
+
+import com.hj.widget.CommonToast;
+//import com.hlj.HomeActivity.HomeActivity;
+import com.hlj.HomeActivity.R;
+import com.hlj.HomeActivity.RecomdTypeDetailsActivity;
+import com.hlj.HomeActivity.RecomdVideoDetailsActivity;
+import com.hlj.HomeActivity.StudyTypeDetailsActivity;
+import com.hlj.HomeActivity.StudyVideoDetailsActivity;
+import com.hlj.HomeActivity.WebViewActivity;
+import com.hlj.net.BitmapWorkerTask;
+import com.hlj.net.BitmapWorkerTask.ImageCallBack;
+import com.hlj.utils.BitmapTask;
+import com.hlj.utils.BitmapTask.PostCallBack;
+import com.hlj.utils.ImageUtils;
+import com.hlj.utils.Logger;
+import com.hlj.utils.StringTools;
+import com.hlj.widget.PwdcheckWindow;
+import com.hlj.widget.PwdcheckWindow.PwdCheckCallBack;
+import com.live.video.constans.HomeConstants;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.animation.Animation;
+import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+import org.videolan.vlc.gui.MainActivity;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
+import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+public class LatesHotLayout extends LinearLayout implements LayoutInterface,
+		View.OnClickListener, View.OnFocusChangeListener {
+
+	private Context mContext;
+
+	ScaleAnimEffect animEffect = new ScaleAnimEffect();
+
+	private HorizontalScrollView hsScrollView;
+
+	private ArrayList<VideoInfo> topRecommends = new ArrayList<VideoInfo>();
+
+	private FrameLayout[] fls = new FrameLayout[10];
+
+	private ImageView[] backGrounds = new ImageView[10];
+	private ImageView[] posts = new ImageView[10];
+	private TextView[] tvs = new TextView[10];
+
+	private ImageView[] refImageView = new ImageView[6];
+
+	CommonToast toast;
+
+	LatesHotLayout instance;
+
+	public LatesHotLayout(Context context) {
+		super(context);
+		this.mContext = context;
+		toast = new CommonToast(mContext);
+		instance = this;
+	}
+
+	@Override
+	public void destroy() {
+		for (int i = 0; i < refImageView.length; i++) {
+			refImageView[i] = null;
+		}
+		for (int i = 0; i < fls.length; i++) {
+			backGrounds[i] = null;
+			posts[i] = null;
+			tvs[i] = null;
+			fls[i] = null;
+		}
+
+		// 杀进程
+
+	}
+
+	@Override
+	public void initListener() {
+		// TODO Auto-generated method stub
+
+	}
+
+	int position = 0;
+
+	private void showOnFocusAnimation(final int i) {
+		position = i;
+		this.fls[i].bringToFront();
+		this.whiteBorder.bringToFront();
+		this.animEffect.setAttributs(1.0F, 1.1F, 1.0F, 1.1F, 100L);
+		Animation localAnimation = this.animEffect.createAnimation();
+
+		localAnimation.setAnimationListener(new AnimationListener() {
+
+			@Override
+			public void onAnimationStart(Animation animation) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				backGrounds[i].startAnimation(animEffect.alphaAnimation(0.0F,
+						1.0F, 150L, 0L));
+				tvs[i].startAnimation(animEffect.alphaAnimation(0.0F, 1.0F,
+						150L, 0L));
+				if (StringTools.isNullOrEmpty(tvs[i].getText().toString())) {
+					tvs[i].setVisibility(View.GONE);
+				} else {
+					tvs[i].setVisibility(View.VISIBLE);
+				}
+
+				backGrounds[i].setVisibility(View.VISIBLE);
+			}
+		});
+		this.posts[i].startAnimation(localAnimation);
+
+	}
+
+	private void showLooseFocusAnimation(int i) {
+		this.animEffect.setAttributs(1.1F, 1.0F, 1.1F, 1.0F, 100L);
+		this.posts[i].startAnimation(this.animEffect.createAnimation());
+		this.tvs[i].setVisibility(View.GONE);
+		this.backGrounds[i].setVisibility(View.GONE);
+	}
+
+	private ImageView whiteBorder;
+
+	private void flyWhiteBorder(int paramInt1, int paramInt2,
+			float paramFloat1, float paramFloat2) {
+
+		// if (this.whiteBorder == null)
+		// return;
+
+		int i = this.whiteBorder.getWidth();
+		int j = this.whiteBorder.getHeight();
+		this.whiteBorder.setVisibility(View.VISIBLE);
+
+		ViewPropertyAnimator localViewPropertyAnimator = this.whiteBorder
+				.animate();
+		localViewPropertyAnimator.setDuration(150L);
+		// localViewPropertyAnimator.scaleX(paramInt1 / i);
+		// localViewPropertyAnimator.scaleY(paramInt2 / j);
+		localViewPropertyAnimator.x(paramFloat1);
+		localViewPropertyAnimator.y(paramFloat2);
+		localViewPropertyAnimator.start();
+	}
+
+	@Override
+	public void initView() {
+		setLayoutParams(new LinearLayout.LayoutParams(
+				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+		setGravity(Gravity.CENTER_HORIZONTAL);
+		setOrientation(VERTICAL);
+		// this.hsScrollView = ((HorizontalScrollView) LayoutInflater.from(
+		// this.mContext).inflate(R.layout.latest_recommend, null));
+
+		this.hsScrollView = ((HorizontalScrollView) LayoutInflater.from(
+				this.mContext).inflate(R.layout.latest_recommend, null));
+		addView(this.hsScrollView);
+
+		// hsScrollView.smoothScrollTo(50, 300);
+
+		this.fls[0] = ((FrameLayout) findViewById(R.id.latest_recommend_fl_0));
+		this.fls[1] = ((FrameLayout) findViewById(R.id.latest_recommend_fl_1));
+		this.fls[2] = ((FrameLayout) findViewById(R.id.latest_recommend_fl_2));
+		this.fls[3] = ((FrameLayout) findViewById(R.id.latest_recommend_fl_3));
+		this.fls[4] = ((FrameLayout) findViewById(R.id.latest_recommend_fl_4));
+		this.fls[5] = ((FrameLayout) findViewById(R.id.latest_recommend_fl_5));
+		this.fls[6] = ((FrameLayout) findViewById(R.id.latest_recommend_fl_6));
+		this.fls[7] = ((FrameLayout) findViewById(R.id.latest_recommend_fl_7));
+		this.fls[8] = ((FrameLayout) findViewById(R.id.latest_recommend_fl_8));
+		this.fls[9] = ((FrameLayout) findViewById(R.id.latest_recommend_fl_9));
+
+		this.backGrounds[0] = ((ImageView) findViewById(R.id.latest_recommend_bg_0));
+		this.backGrounds[1] = ((ImageView) findViewById(R.id.latest_recommend_bg_1));
+		this.backGrounds[2] = ((ImageView) findViewById(R.id.latest_recommend_bg_2));
+		this.backGrounds[3] = ((ImageView) findViewById(R.id.latest_recommend_bg_3));
+		this.backGrounds[4] = ((ImageView) findViewById(R.id.latest_recommend_bg_4));
+		this.backGrounds[5] = ((ImageView) findViewById(R.id.latest_recommend_bg_5));
+		this.backGrounds[6] = ((ImageView) findViewById(R.id.latest_recommend_bg_6));
+		this.backGrounds[7] = ((ImageView) findViewById(R.id.latest_recommend_bg_7));
+		this.backGrounds[8] = ((ImageView) findViewById(R.id.latest_recommend_bg_8));
+		this.backGrounds[9] = ((ImageView) findViewById(R.id.latest_recommend_bg_9));
+
+		this.posts[0] = ((ImageView) findViewById(R.id.latest_recommend_poster_0));
+		this.posts[1] = ((ImageView) findViewById(R.id.latest_recommend_poster_1));
+		this.posts[2] = ((ImageView) findViewById(R.id.latest_recommend_poster_2));
+		this.posts[3] = ((ImageView) findViewById(R.id.latest_recommend_poster_3));
+		this.posts[4] = ((ImageView) findViewById(R.id.latest_recommend_poster_4));
+		this.posts[5] = ((ImageView) findViewById(R.id.latest_recommend_poster_5));
+		this.posts[6] = ((ImageView) findViewById(R.id.latest_recommend_poster_6));
+		this.posts[7] = ((ImageView) findViewById(R.id.latest_recommend_poster_7));
+		this.posts[8] = ((ImageView) findViewById(R.id.latest_recommend_poster_8));
+		this.posts[9] = ((ImageView) findViewById(R.id.latest_recommend_poster_9));
+
+		this.tvs[0] = ((TextView) findViewById(R.id.latest_recommend_text_0));
+		this.tvs[1] = ((TextView) findViewById(R.id.latest_recommend_text_1));
+		this.tvs[2] = ((TextView) findViewById(R.id.latest_recommend_text_2));
+		this.tvs[3] = ((TextView) findViewById(R.id.latest_recommend_text_3));
+		this.tvs[4] = ((TextView) findViewById(R.id.latest_recommend_text_4));
+		this.tvs[5] = ((TextView) findViewById(R.id.latest_recommend_text_5));
+		this.tvs[6] = ((TextView) findViewById(R.id.latest_recommend_text_6));
+		this.tvs[7] = ((TextView) findViewById(R.id.latest_recommend_text_7));
+		this.tvs[8] = ((TextView) findViewById(R.id.latest_recommend_text_8));
+		this.tvs[9] = ((TextView) findViewById(R.id.latest_recommend_text_9));
+
+		this.refImageView[0] = ((ImageView) findViewById(R.id.hot_reflected_img_0));
+		this.refImageView[1] = ((ImageView) findViewById(R.id.hot_reflected_img_1));
+		this.refImageView[2] = ((ImageView) findViewById(R.id.hot_reflected_img_2));
+		this.refImageView[3] = ((ImageView) findViewById(R.id.hot_reflected_img_3));
+		this.refImageView[4] = ((ImageView) findViewById(R.id.hot_reflected_img_4));
+		this.refImageView[5] = ((ImageView) findViewById(R.id.hot_reflected_img_5));
+
+		for (int i = 0; i < 10; i++) {
+
+			this.whiteBorder = (ImageView) findViewById(R.id.white_boder);
+			FrameLayout.LayoutParams localLayoutParams = new FrameLayout.LayoutParams(
+					292, 445);
+			localLayoutParams.leftMargin = 100;
+			localLayoutParams.topMargin = 0;
+			this.whiteBorder.setLayoutParams(localLayoutParams);
+
+			this.posts[i].setOnClickListener(this);
+			this.posts[i].setOnFocusChangeListener(this);
+			this.backGrounds[i].setVisibility(View.GONE);
+			this.tvs[i].setVisibility(View.GONE);
+		}
+
+	}
+
+	public void firstGetFocusable() {
+		this.posts[0].setFocusable(true);
+		this.posts[0].requestFocus();
+		this.posts[0].setFocusableInTouchMode(true);
+	}
+
+	int refIndex;
+
+	@Override
+	public void loadData() {
+
+		refIndex = 0;
+
+		for (int i = 0; i < topRecommends.size(); i++) {
+			VideoInfo localVideoInfo = topRecommends.get(i);
+
+			if (StringTools.isNullOrEmpty(localVideoInfo.title)) {
+				tvs[i].setVisibility(View.GONE);
+			} else {
+				// tvs[i].setVisibility(View.VISIBLE);
+				tvs[i].setText(localVideoInfo.title);
+			}
+
+			// posts[i].setImageResource(localVideoInfo.img);
+			// Logger.log("i:"+i);
+			// HomeActivity.imageLoader.displayImage(localVideoInfo.imageUrl,posts[i]);
+			// HomeActivity.fb.display(posts[i], localVideoInfo.imageUrl);
+			new BitmapWorkerTask(mContext, posts[i], i, true, true,
+					new com.hlj.net.BitmapWorkerTask.NewImageCallBack() {
+
+						@Override
+						public void post(Bitmap bitmap, int imgNum) {
+							if (imgNum == 0 || imgNum == 2 || imgNum == 3
+									|| imgNum == 4 || imgNum == 6
+									|| imgNum == 9) {
+
+								// Message m = new Message();
+								// m.arg1 = j;
+								// handler.sendMessageDelayed(m, 1 * 1000);
+
+								Bitmap b = ImageUtils.createCutReflectedImage(
+										ImageUtils
+												.convertViewToBitmap(fls[imgNum]),
+										0);
+								Logger.log("imgNum:" + imgNum);
+								Logger.log("refIndex:" + refIndex);
+								refImageView[refIndex].setImageBitmap(b);
+								refIndex += 1;
+
+								// if (refIndex == 6) {
+								// refIndex = 0;
+								// }
+
+								// handlerReflectionBitmap(imgNum);
+							}
+
+						}
+					}).execute(localVideoInfo.imageUrl);
+
+			// BitmapTask task = new BitmapTask(posts[i], callback);
+			// task.execute(localVideoInfo.imageUrl);
+			// Message m = new Message();
+			// m.arg1 = i;
+			// handler.sendMessageDelayed(m, 3 * 1000);
+
+		}
+
+	}
+
+	Handler handler = new Handler() {
+
+		public void handleMessage(android.os.Message msg) {
+
+			if (msg.arg1 == 0 || msg.arg1 == 2 || msg.arg1 == 3
+					|| msg.arg1 == 4 || msg.arg1 == 6 || msg.arg1 == 9) {
+				handlerReflectionBitmap(msg.arg1);
+			}
+
+		};
+	};
+
+	public void handlerReflectionBitmap(int position) {
+
+		if (position == 0) {
+			Bitmap reflectionBitmap = ImageUtils.createCutReflectedImage(
+					ImageUtils.convertViewToBitmap(fls[position]), 0);
+			refImageView[0].setImageBitmap(reflectionBitmap);
+		}
+
+		if (position == 2) {
+			Bitmap reflectionBitmap2 = ImageUtils.createCutReflectedImage(
+					ImageUtils.convertViewToBitmap(fls[position]), 0);
+			refImageView[1].setImageBitmap(reflectionBitmap2);
+		}
+
+		if (position == 3) {
+			Bitmap reflectionBitmap3 = ImageUtils.createCutReflectedImage(
+					ImageUtils.convertViewToBitmap(fls[position]), 0);
+			refImageView[2].setImageBitmap(reflectionBitmap3);
+		}
+
+		if (position == 4) {
+			Bitmap reflectionBitmap4 = ImageUtils.createCutReflectedImage(
+					ImageUtils.convertViewToBitmap(fls[position]), 0);
+			refImageView[3].setImageBitmap(reflectionBitmap4);
+		}
+
+		if (position == 7) {
+			Bitmap reflectionBitmap5 = ImageUtils.createCutReflectedImage(
+					ImageUtils.convertViewToBitmap(fls[position]), 0);
+			refImageView[4].setImageBitmap(reflectionBitmap5);
+		}
+
+		if (position == 9) {
+			Bitmap reflectionBitmap6 = ImageUtils.createCutReflectedImage(
+					ImageUtils.convertViewToBitmap(fls[position]), 0);
+			refImageView[5].setImageBitmap(reflectionBitmap6);
+		}
+
+		// invalidate();
+
+	}
+
+	PostCallBack callback = new PostCallBack() {
+
+		@Override
+		public void post(Bitmap paramBitmap) {
+			// handlerReflectionBitmap();
+		}
+	};
+
+	public void setTopRecommends(ArrayList<VideoInfo> paramArrayList) {
+		this.topRecommends = paramArrayList;
+	}
+
+	@Override
+	public void updateData() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onFocusChange(View v, boolean hasFocus) {
+		switch (v.getId()) {
+		case R.id.latest_recommend_poster_0:
+			if (hasFocus) {
+				this.hsScrollView.smoothScrollTo(0, 0);
+				showOnFocusAnimation(0);
+				whiteBorder.getLayoutParams().width = 292;
+				whiteBorder.getLayoutParams().height = 445;
+
+				flyWhiteBorder(292, 445, 100.0F, 0.0F);
+				// this.posts[0].setColor(Color.WHITE);
+				// this.posts[0].setBorderWidth(5);
+			} else {
+				this.whiteBorder.setVisibility(View.INVISIBLE);
+				// this.posts[0].setColor(Color.TRANSPARENT);
+				// this.posts[0].setBorderWidth(0);
+				showLooseFocusAnimation(0);
+			}
+			break;
+		case R.id.latest_recommend_poster_1:
+			if (hasFocus) {
+				this.hsScrollView.smoothScrollTo(0, 0);
+
+				whiteBorder.getLayoutParams().width = 445;
+				whiteBorder.getLayoutParams().height = 220;
+				showOnFocusAnimation(1);
+
+				flyWhiteBorder(445, 220, 364.0F, 10.0F);
+				this.whiteBorder.setVisibility(View.VISIBLE);
+				// this.posts[1].setColor(Color.WHITE);
+				// this.posts[1].setBorderWidth(5);
+
+			} else {
+				showLooseFocusAnimation(1);
+				this.whiteBorder.setVisibility(View.GONE);
+				// this.posts[1].setColor(Color.TRANSPARENT);
+				// this.posts[1].setBorderWidth(0);
+			}
+			break;
+		case R.id.latest_recommend_poster_2:
+			if (hasFocus) {
+				showOnFocusAnimation(2);
+				whiteBorder.getLayoutParams().width = 220;
+				whiteBorder.getLayoutParams().height = 220;
+
+				flyWhiteBorder(220, 220, 374.0F, 215.0F);
+				// this.posts[2].setColor(Color.WHITE);
+				// this.posts[2].setBorderWidth(5);
+			} else {
+				showLooseFocusAnimation(2);
+				this.whiteBorder.setVisibility(View.GONE);
+				// this.posts[2].setColor(Color.TRANSPARENT);
+				// this.posts[2].setBorderWidth(0);
+			}
+
+			break;
+		case R.id.latest_recommend_poster_3:
+			if (hasFocus) {
+				showOnFocusAnimation(3);
+				whiteBorder.getLayoutParams().width = 220;
+				whiteBorder.getLayoutParams().height = 220;
+
+				flyWhiteBorder(220, 220, 579.0F, 215.0F);
+				// this.posts[3].setColor(Color.WHITE);
+				// this.posts[3].setBorderWidth(5);
+			} else {
+				showLooseFocusAnimation(3);
+				// this.posts[3].setColor(Color.TRANSPARENT);
+				// this.posts[3].setBorderWidth(0);
+				this.whiteBorder.setVisibility(View.GONE);
+			}
+
+			break;
+		case R.id.latest_recommend_poster_4:
+			if (hasFocus) {
+				showOnFocusAnimation(4);
+				whiteBorder.getLayoutParams().width = 300;
+				whiteBorder.getLayoutParams().height = 445;
+
+				flyWhiteBorder(300, 445, 780.0F, 0.0F);
+
+				// this.posts[4].setColor(Color.WHITE);
+				// this.posts[4].setBorderWidth(5);
+			} else {
+				showLooseFocusAnimation(4);
+
+				// this.posts[4].setColor(Color.TRANSPARENT);
+				// this.posts[4].setBorderWidth(0);
+				this.whiteBorder.setVisibility(View.GONE);
+			}
+
+			break;
+		case R.id.latest_recommend_poster_5:
+			if (hasFocus) {
+				this.hsScrollView.smoothScrollTo(1436, 0);
+				showOnFocusAnimation(5);
+
+				whiteBorder.getLayoutParams().width = 220;
+				whiteBorder.getLayoutParams().height = 220;
+
+				flyWhiteBorder(220, 220, 1061.0F, 10.0F);
+
+				// this.posts[5].setColor(Color.WHITE);
+				// this.posts[5].setBorderWidth(5);
+			} else {
+				showLooseFocusAnimation(5);
+
+				// this.posts[5].setColor(Color.TRANSPARENT);
+				// this.posts[5].setBorderWidth(0);
+				this.whiteBorder.setVisibility(View.GONE);
+			}
+			break;
+		case R.id.latest_recommend_poster_6:
+			if (hasFocus) {
+				this.hsScrollView.smoothScrollTo(1647, 0);
+				showOnFocusAnimation(6);
+
+				whiteBorder.getLayoutParams().width = 220;
+				whiteBorder.getLayoutParams().height = 220;
+
+				flyWhiteBorder(220, 220, 1061.0F, 215.0F);
+				// this.posts[6].setColor(Color.WHITE);
+				// this.posts[6].setBorderWidth(5);
+			} else {
+				showLooseFocusAnimation(6);
+				this.whiteBorder.setVisibility(View.GONE);
+				// this.posts[6].setColor(Color.TRANSPARENT);
+				// this.posts[6].setBorderWidth(0);
+			}
+			break;
+		case R.id.latest_recommend_poster_7:
+			if (hasFocus) {
+				this.hsScrollView.smoothScrollTo(1679, 0);
+				showOnFocusAnimation(7);
+
+				whiteBorder.getLayoutParams().width = 220;
+				whiteBorder.getLayoutParams().height = 220;
+
+				flyWhiteBorder(220, 220, 1267.0F, 10.0F);
+				// this.posts[7].setColor(Color.WHITE);
+				// this.posts[7].setBorderWidth(5);
+			} else {
+				showLooseFocusAnimation(7);
+				this.whiteBorder.setVisibility(View.GONE);
+				// this.posts[7].setColor(Color.TRANSPARENT);
+				// this.posts[7].setBorderWidth(0);
+			}
+			break;
+		case R.id.latest_recommend_poster_8:
+			if (hasFocus) {
+				this.hsScrollView.smoothScrollTo(1837, 0);
+				showOnFocusAnimation(8);
+
+				whiteBorder.getLayoutParams().width = 220;
+				whiteBorder.getLayoutParams().height = 220;
+
+				flyWhiteBorder(220, 220, 1470.0F, 10.0F);
+
+				// this.posts[8].setColor(Color.WHITE);
+				// this.posts[8].setBorderWidth(5);
+			} else {
+				showLooseFocusAnimation(8);
+				this.whiteBorder.setVisibility(View.GONE);
+				// this.posts[8].setColor(Color.TRANSPARENT);
+				// this.posts[8].setBorderWidth(0);
+			}
+
+			break;
+		case R.id.latest_recommend_poster_9:
+			if (hasFocus) {
+				this.hsScrollView.smoothScrollTo(1837, 0);
+				showOnFocusAnimation(9);
+
+				whiteBorder.getLayoutParams().width = 445;
+				whiteBorder.getLayoutParams().height = 220;
+
+				flyWhiteBorder(445, 220, 1257.0F, 215.0F);
+				// this.posts[9].setColor(Color.WHITE);
+				// this.posts[9].setBorderWidth(5);
+			} else {
+				showLooseFocusAnimation(9);
+				this.whiteBorder.setVisibility(View.GONE);
+
+				// this.posts[9].setColor(Color.TRANSPARENT);
+				// this.posts[9].setBorderWidth(0);
+			}
+			break;
+		}
+	}
+
+	String action = "";
+	String mode = "";
+
+	int catId;
+	String contentid;
+	String url = "";
+	String title = "";
+	String shortTitle = "";
+	String type = "";
+	String grade = "";
+	String versions = "";
+	String subject = "";
+	String imgUrl;
+	int postion = 0;
+
+	String childLock;
+
+	@Override
+	public void onClick(View v) {
+
+		if (null != topRecommends && topRecommends.size() > 0) {
+			switch (v.getId()) {
+			case R.id.latest_recommend_poster_0:
+				postion = 0;
+				break;
+			case R.id.latest_recommend_poster_1:
+				postion = 1;
+				break;
+			case R.id.latest_recommend_poster_2:
+				postion = 2;
+				break;
+			case R.id.latest_recommend_poster_3:
+				postion = 3;
+				break;
+			case R.id.latest_recommend_poster_4:
+				postion = 4;
+				break;
+			case R.id.latest_recommend_poster_5:
+				postion = 5;
+				break;
+			case R.id.latest_recommend_poster_6:
+				postion = 6;
+				break;
+			case R.id.latest_recommend_poster_7:
+				postion = 7;
+				break;
+			case R.id.latest_recommend_poster_8:
+				postion = 8;
+				break;
+			case R.id.latest_recommend_poster_9:
+				postion = 9;
+				break;
+			}
+
+			action = topRecommends.get(position).action;
+			catId = topRecommends.get(position).catId;
+			contentid = topRecommends.get(position).contentId;
+			url = topRecommends.get(position).url;
+			title = topRecommends.get(position).title;
+			shortTitle = topRecommends.get(position).shortTilte;
+			type = topRecommends.get(position).type;
+			grade = topRecommends.get(position).grade;
+			versions = topRecommends.get(position).versions;
+			subject = topRecommends.get(position).subject;
+			imgUrl = topRecommends.get(position).imageUrl;
+			childLock = topRecommends.get(position).childLock;
+
+			mode = topRecommends.get(position).mode;
+
+			if ("0".equals(childLock)) {
+				// 直接进入
+				goToNext();
+			} else if ("1".equals(childLock)) {
+				if (HomeConstants.HAS_LOCK.equals(HomeConstants.isVersionLock)
+						&& HomeConstants.HAS_LOCK
+								.equals(HomeConstants.isPrimaryLock)
+						&& HomeConstants.HAS_LOCK
+								.equals(HomeConstants.isTempLock)) {
+					// 弹出保护框
+					PwdcheckWindow view = new PwdcheckWindow(mContext, v,
+							pwdcallback);
+				} else {
+					goToNext();
+				}
+			}
+		} else {
+			toast.setIcon(R.drawable.toast_err);
+			toast.setText("无内容");
+			toast.show();
+		}
+	}
+
+	PwdCheckCallBack pwdcallback = new PwdCheckCallBack() {
+
+		@Override
+		public void check(String str) {
+			if ("1".equals(str)) {
+				// 直接进入
+				goToNext();
+			}
+		}
+
+	};
+
+	private void goToNext() {
+		if ("openAction".equals(mode)) {
+			if ("list".equals(action) || "openAllList".equals(action)) {
+
+				if ("study".equals(type)) {
+					Intent it = new Intent(mContext,
+							StudyTypeDetailsActivity.class);
+					it.putExtra("catId", catId);
+					it.putExtra("url", url);
+					it.putExtra("title", title);
+					it.putExtra("shortTitle", shortTitle);
+					it.putExtra("action", action);
+					it.putExtra("grade", grade);
+					it.putExtra("subject", subject);
+					it.putExtra("versions", versions);
+					mContext.startActivity(it);
+				} else {
+					Intent it = new Intent(mContext,
+							RecomdTypeDetailsActivity.class);
+					it.putExtra("catId", catId);
+					it.putExtra("url", url);
+					it.putExtra("title", title);
+					it.putExtra("shortTitle", shortTitle);
+					it.putExtra("action", action);
+					mContext.startActivity(it);
+				}
+			} else if ("info".equals(action)) {
+				if ("study".equals(type)) {
+					Intent it = new Intent(mContext,
+							StudyVideoDetailsActivity.class);
+					it.putExtra("catId", catId);
+					it.putExtra("contentid", contentid);
+					it.putExtra("url", url);
+					it.putExtra("title", title);
+					it.putExtra("action", action);
+					it.putExtra("grade", grade);
+					it.putExtra("subject", subject);
+					it.putExtra("versions", versions);
+					it.putExtra("imgUrl", imgUrl);
+					mContext.startActivity(it);
+				} else {
+					Intent it = new Intent(mContext,
+							RecomdVideoDetailsActivity.class);
+					// Intent it = new Intent(mContext, MainActivity.class);
+					it.putExtra("catId", catId);
+					it.putExtra("url", url);
+					it.putExtra("contentid", contentid);
+					mContext.startActivity(it);
+
+				}
+			}
+		} else if ("openUrl".equals(mode)) {
+			Intent it = new Intent(mContext, WebViewActivity.class);
+			it.putExtra("url", url);
+			mContext.startActivity(it);
+		}
+
+	}
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xmz="http://com.hlj"
+    android:layout_width="268.0dip"
+    android:layout_height="404.0dip"
+    android:layout_gravity="center"
+    android:background="#00d9e9"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:gravity="center"
+    android:nextFocusUp="@id/version_switch"
+    android:orientation="vertical" >
+
+    <com.hlj.view.ImageViewBorder
+        android:id="@+id/movie_image"
+        android:layout_width="200dip"
+        android:layout_height="200dip"
+        android:layout_margin="50dip"
+        android:gravity="center_horizontal"
+        android:scaleType="fitXY"
+        android:src="@drawable/biao"
+        xmz:BorderColor="WHITE" />
+
+    <TextView
+        android:id="@+id/movie_text"
+        style="@style/TextOnMainLayout_new"
+        android:layout_width="268.0dip"
+        android:layout_height="50dip"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="50dip"
+        android:background="@color/transparent"
+        android:gravity="bottom|center_horizontal"
+        android:text=""
+        android:visibility="visible" />
+
+</LinearLayout>

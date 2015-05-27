@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingTop="30.0dip"
+    android:scrollbars="none" xmlns:tools="http://schemas.android.com/tools" tools:context=".FavVideoActivity">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="425.0dip" >
+
+            <ImageView
+                android:id="@id/video_type_refimg_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@id/video_type_refimg_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="184.0dip" />
+
+            <ImageView
+                android:id="@id/video_type_refimg_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="618.0dip" />
+
+            <ImageView
+                android:id="@id/video_type_refimg_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="911.0dip" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@id/latest_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <FrameLayout
+                android:id="@id/video_type_fl_0"
+                android:layout_width="564.0dip"
+                android:layout_height="544.0dip" >
+
+                <ImageView
+                    android:id="@id/video_type_bg_0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7.0dip"
+                    android:src="@drawable/shadow_big_left" />
+
+                <ImageView
+                    android:id="@id/video_type_post_0"
+                    android:layout_width="264.0dip"
+                    android:layout_height="405.0dip"
+                    android:layout_marginLeft="115.0dip"
+                    android:layout_marginTop="20.0dip"
+                    android:scaleType="fitXY"
+                    android:src="@color/color3" />
+
+                <ImageView
+                    android:id="@id/video_type_log_0"
+                    android:layout_width="264.0dip"
+                    android:layout_height="405.0dip"
+                    android:layout_marginLeft="115.0dip"
+                    android:layout_marginTop="20.0dip"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:nextFocusDown="@id/main_search"
+                    android:nextFocusRight="@id/video_type_log_1"
+                    android:nextFocusUp="@id/study_type"
+                    android:scaleType="fitXY" />
+
+                <TextView
+                    android:id="@id/latest_recommend_text_0"
+                    style="@style/TextOnMainLayout_new"
+                    android:layout_width="292.0dip"
+                    android:layout_height="50.0dip"
+                    android:layout_marginLeft="100.0dip"
+                    android:layout_marginTop="395.0dip" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@id/video_type_fl_1"
+                android:layout_width="587.0dip"
+                android:layout_height="300.0dip"
+                android:layout_marginLeft="194.0dip"
+                android:layout_marginTop="5.0dip" >
+
+                <ImageView
+                    android:id="@id/video_type_bg_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15.0dip"
+                    android:src="@drawable/shadow_big_top" />
+
+                <ImageView
+                    android:id="@id/video_type_log_1"
+                    android:layout_width="200.0dip"
+                    android:layout_height="200.0dip"
+                    android:layout_marginLeft="190.0dip"
+                    android:layout_marginTop="15.0dip"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:nextFocusDown="@id/video_type_log_3"
+                    android:nextFocusLeft="@id/video_type_log_0"
+                    android:nextFocusRight="@id/video_type_log_2"
+                    android:nextFocusUp="@id/study_type"
+                    android:src="@color/color12" />
+                
+                 <TextView
+                    android:id="@id/latest_recommend_text_1"
+                    style="@style/TextOnMainLayout_new"
+                    android:layout_width="220.0dip"
+                    android:layout_height="50.0dip"
+                    android:layout_marginLeft="180.0dip"
+                    android:layout_marginTop="180.0dip" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@id/video_type_fl_2"
+                android:layout_width="587.0dip"
+                android:layout_height="300.0dip"
+                android:layout_marginLeft="399.0dip"
+                android:layout_marginTop="5.0dip" >
+
+                <ImageView
+                    android:id="@id/video_type_bg_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15.0dip"
+                    android:src="@drawable/shadow_big_top" />
+
+                <ImageView
+                    android:id="@id/video_type_log_2"
+                    android:layout_width="200.0dip"
+                    android:layout_height="200.0dip"
+                    android:layout_marginLeft="190.0dip"
+                    android:layout_marginTop="15.0dip"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:nextFocusDown="@id/video_type_log_3"
+                    android:nextFocusLeft="@id/video_type_log_1"
+                    android:nextFocusRight="@id/video_type_log_4"
+                    android:nextFocusUp="@id/study_type"
+                    android:src="@color/color10" />
+                
+                <TextView
+                    android:id="@id/latest_recommend_text_2"
+                    style="@style/TextOnMainLayout_new"
+                    android:layout_width="220.0dip"
+                    android:layout_height="50.0dip"
+                    android:layout_marginLeft="180.0dip"
+                    android:layout_marginTop="180.0dip" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@id/video_type_fl_3"
+                android:layout_width="800.0dip"
+                android:layout_height="400.0dip"
+                android:layout_marginLeft="184.0dip"
+                android:layout_marginTop="105.0dip" >
+
+                <ImageView
+                    android:id="@id/video_type_bg_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="80.0dip"
+                    android:src="@drawable/shadow_big_bottom" />
+
+                <ImageView
+                    android:id="@id/video_type_post_1"
+                    android:layout_width="405.0dip"
+                    android:layout_height="200.0dip"
+                    android:layout_marginLeft="200.0dip"
+                    android:layout_marginTop="120.0dip"
+                    android:scaleType="fitXY"
+                    android:src="@color/color11" />
+
+                <ImageView
+                    android:id="@id/video_type_log_3"
+                    android:layout_width="405.0dip"
+                    android:layout_height="200.0dip"
+                    android:layout_marginLeft="200.0dip"
+                    android:layout_marginTop="120.0dip"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:nextFocusLeft="@id/video_type_log_0"
+                    android:nextFocusRight="@id/video_type_log_4"
+                    android:nextFocusUp="@id/video_type_log_1" />
+                
+                 <TextView
+                    android:id="@id/latest_recommend_text_3"
+                    style="@style/TextOnMainLayout_new"
+                    android:layout_width="445.0dip"
+                    android:layout_height="50.0dip"
+                    android:layout_marginLeft="180.0dip"
+                    android:layout_marginTop="280.0dip" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@id/video_type_fl_4"
+                android:layout_width="624.0dip"
+                android:layout_height="544.0dip"
+                android:layout_marginLeft="618.0dip" >
+
+                <ImageView
+                    android:id="@id/video_type_bg_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7.0dip"
+                    android:src="@drawable/shadow_big_center" />
+
+                <ImageView
+                    android:id="@id/video_type_post_2"
+                    android:layout_width="272.0dip"
+                    android:layout_height="405.0dip"
+                    android:layout_marginLeft="176.0dip"
+                    android:layout_marginTop="20.0dip"
+                    android:scaleType="fitXY"
+                    android:src="@color/color4" />
+
+                <ImageView
+                    android:id="@id/video_type_log_4"
+                    android:layout_width="272.0dip"
+                    android:layout_height="405.0dip"
+                    android:layout_marginLeft="176.0dip"
+                    android:layout_marginTop="20.0dip"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:nextFocusDown="@id/main_search"
+                    android:nextFocusLeft="@id/video_type_log_1"
+                    android:nextFocusRight="@id/video_type_log_6"
+                    android:nextFocusUp="@id/study_type"
+                    android:scaleType="fitXY" />
+                
+                <TextView
+                    android:id="@id/latest_recommend_text_4"
+                    style="@style/TextOnMainLayout_new"
+                    android:layout_width="300.0dip"
+                    android:layout_height="50.0dip"
+                    android:layout_marginLeft="162.0dip"
+                    android:layout_marginTop="395.0dip" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@id/video_type_fl_6"
+                android:layout_width="399.0dip"
+                android:layout_height="397.0dip"
+                android:layout_marginLeft="894.0dip" >
+
+                <ImageView
+                    android:id="@id/video_type_bg_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="20.0dip"
+                    android:paddingTop="20.0dip"
+                    android:src="@drawable/shadow_right_top" />
+
+                <ImageView
+                    android:id="@id/video_type_log_6"
+                    android:layout_width="200.0dip"
+                    android:layout_height="200.0dip"
+                    android:layout_marginLeft="179.0dip"
+                    android:layout_marginTop="20.0dip"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:nextFocusDown="@id/video_type_log_8"
+                    android:nextFocusLeft="@id/video_type_log_4"
+                    android:nextFocusUp="@id/study_type"
+                    android:src="@color/color7" />
+                
+                 <TextView
+                    android:id="@id/latest_recommend_text_5"
+                    style="@style/TextOnMainLayout_new"
+                    android:layout_width="220.0dip"
+                    android:layout_height="50.0dip"
+                    android:layout_marginLeft="170.0dip"
+                    android:layout_marginTop="180.0dip" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@id/video_type_fl_8"
+                android:layout_width="521.0dip"
+                android:layout_height="438.0dip"
+                android:layout_marginLeft="911.0dip"
+                android:layout_marginTop="105.0dip" >
+
+                <ImageView
+                    android:id="@id/video_type_bg_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/shadow_right_bottom" />
+
+                <ImageView
+                    android:id="@id/video_type_log_8"
+                    android:layout_width="200.0dip"
+                    android:layout_height="200.0dip"
+                    android:layout_marginLeft="162.0dip"
+                    android:layout_marginTop="120.0dip"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:nextFocusDown="@id/main_search"
+                    android:nextFocusLeft="@id/video_type_log_4"
+                    android:nextFocusUp="@id/video_type_log_6"
+                    android:src="@color/color8" />
+                
+                <TextView
+                    android:id="@id/latest_recommend_text_6"
+                    style="@style/TextOnMainLayout_new"
+                    android:layout_width="220.0dip"
+                    android:layout_height="50.0dip"
+                    android:layout_marginLeft="152.0dip"
+                    android:layout_marginTop="280.0dip" />
+            </FrameLayout>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@id/white_boder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_border"
+            android:visibility="invisible" />
+    </FrameLayout>
+
+</HorizontalScrollView>

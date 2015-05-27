@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/launcher52_bg"
+    android:orientation="vertical" >
+
+    <com.hlj.view.CommonTitleView
+        android:id="@id/commonTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="top" />
+
+    <ImageView
+        android:id="@id/main_search"
+        android:layout_width="fill_parent"
+        android:layout_height="1.0dip"
+        android:layout_below="@id/commonTitle"
+        android:layout_marginBottom="5.0dip"
+        android:layout_marginTop="5.0dip"
+        android:scaleType="fitXY"
+        android:src="@drawable/line760" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@id/main_layout_pager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/main_search"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60.0dip" />
+
+    <TextView
+        android:id="@id/main_layout_pager"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:focusable="true"
+        android:visibility="invisible" />
+
+</RelativeLayout>

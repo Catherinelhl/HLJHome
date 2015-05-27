@@ -1,0 +1,252 @@
+package com.hlj.utils;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
+
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PixelFormat;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Shader.TileMode;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
+import android.view.View;
+import android.view.View.MeasureSpec;
+
+/**
+ * 
+ * 处理图片工具类
+ * 
+ * @author huangyuchao
+ * 
+ */
+public class ImageUtils {
+
+	/**
+	 * 从SDCard上读取图片
+	 * 
+	 * @param pathName
+	 * @return
+	 */
+	public static Bitmap getBitmapFromSDCard(String pathName) {
+		return BitmapFactory.decodeFile(pathName);
+	}
+
+	/**
+	 * 缩放图片
+	 * 
+	 * @param bitmap
+	 * @param width
+	 * @param height
+	 * @return
+	 */
+	public static Bitmap zoomBitmap(Bitmap bitmap, int width, int height) {
+
+		int w = bitmap.getWidth();
+		int h = bitmap.getHeight();
+		Matrix matrix = new Matrix();
+		matrix.postScale((float) width / w, (float) height / h);
+		return Bitmap.createBitmap(bitmap, 0, 0, w, h, matrix, true);
+	}
+
+	/**
+	 * 将Drawable转化为Bitmap
+	 * 
+	 * @param drawable
+	 * @return
+	 */
+	public static Bitmap drawableToBitmap(Drawable drawable) {
+		int width = drawable.getIntrinsicWidth();
+		int height = drawable.getIntrinsicHeight();
+		Bitmap bitmap = Bitmap.createBitmap(width, height, drawable
+				.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+				: Bitmap.Config.RGB_565);
+		Canvas canvas = new Canvas(bitmap);
+		drawable.setBounds(0, 0, width, height);
+		drawable.draw(canvas);
+		return bitmap;
+	}
+
+	/**
+	 * 获得圆角图片
+	 * 
+	 * @param bitmap
+	 * @param roundPx
+	 * @return
+	 */
+	public static Bitmap getRoundedCornerBitmap(Bitmap bitmap, float roundPx) {
+		Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
+				bitmap.getHeight(), Config.ARGB_8888);
+		Canvas canvas = new Canvas(output);
+		final Paint paint = new Paint();
+		final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+		final RectF rectF = new RectF(rect);
+		canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+		paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
+		canvas.drawBitmap(bitmap, rect, rect, paint);
+		return output;
+	}
+
+	/**
+	 * 获得带倒影的图片(和原始图片一起)
+	 * 
+	 * @param bitmap
+	 * @return
+	 */
+	public static Bitmap getReflectionImageWithOrigin(Bitmap bitmap) {
+
+		// 原始图片和反射图片中间的间距
+		final int reflectionGap = 0;
+		int width = bitmap.getWidth();
+		int height = bitmap.getHeight();
+
+		// 反转
+		Matrix matrix = new Matrix();
+
+		// 第一个参数为1表示x方向上以原比例为准保持不变，正数表示方向不变。
+		// 第二个参数为-1表示y方向上以原比例为准保持不变，负数表示方向取反。
+		matrix.preScale(1, -1);
+		Bitmap reflectionImage = Bitmap.createBitmap(bitmap, 0, height / 2,
+				width, height / 2, matrix, false);
+		Bitmap bitmapWithReflection = Bitmap.createBitmap(width,
+				(height + height / 2), Config.ARGB_8888);
+		Canvas canvas = new Canvas(bitmapWithReflection);
+		canvas.drawBitmap(bitmap, 0, 0, null);
+		Paint defaultPaint = new Paint();
+		canvas.drawRect(0, height, width, height + reflectionGap, defaultPaint);
+		canvas.drawBitmap(reflectionImage, 0, height + reflectionGap, null);
+		Paint paint = new Paint();
+		LinearGradient shader = new LinearGradient(0, bitmap.getHeight(), 0,
+				bitmapWithReflection.getHeight() + reflectionGap, 0x70ffffff,
+				0x00ffffff, TileMode.CLAMP);
+		paint.setShader(shader);
+		paint.setXfermode(new PorterDuffXfermode(Mode.DST_IN));
+		canvas.drawRect(0, height, width, bitmapWithReflection.getHeight()
+				+ reflectionGap, paint);
+		return bitmapWithReflection;
+	}
+
+	private static int reflectImageHeight = 100;
+
+	/**
+	 * 获得带倒影的图片
+	 * 
+	 * @param bitmap
+	 * @param paramInt
+	 * @return
+	 */
+	public static Bitmap createCutReflectedImage(Bitmap bitmap, int paramInt) {
+
+		int width = bitmap.getWidth();
+		int height = bitmap.getHeight();
+		Matrix localMatrix = new Matrix();
+		localMatrix.preScale(1.0F, -1.0F);
+
+		Bitmap localBitmap1 = Bitmap.createBitmap(bitmap, 0, height
+				- reflectImageHeight - paramInt, width, reflectImageHeight,
+				localMatrix, true);
+		Bitmap localBitmap2 = Bitmap.createBitmap(width, reflectImageHeight,
+				Bitmap.Config.ARGB_8888);
+		Canvas localCanvas = new Canvas(localBitmap2);
+		localCanvas.drawBitmap(localBitmap1, 0.0F, 0.0F, null);
+		// 0x00ffffff
+		LinearGradient localLinearGradient = new LinearGradient(0.0F, 0.0F,
+				0.0F, localBitmap2.getHeight(), 0x70ffffff, 0x00ffffff,
+				TileMode.CLAMP);
+		Paint localPaint = new Paint();
+		localPaint.setShader(localLinearGradient);
+		localPaint.setXfermode(new PorterDuffXfermode(Mode.DST_IN));
+		localCanvas.drawRect(0.0F, 0.0F, width, localBitmap2.getHeight(),
+				localPaint);
+		if (!localBitmap1.isRecycled()) {
+			localBitmap1.recycle();
+			localBitmap1 = null;
+			System.gc();
+		}
+		return localBitmap2;
+	}
+
+	public static Bitmap convertViewToBitmap(View paramView) {
+		paramView.setDrawingCacheEnabled(true);
+		paramView.measure(
+				View.MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
+				View.MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+		paramView.layout(0, 0, paramView.getMeasuredWidth(),
+				paramView.getMeasuredHeight());
+		paramView.buildDrawingCache();
+
+		Bitmap b = paramView.getDrawingCache();
+		Logger.log(b + "<><><><><><>");
+		return b;
+	}
+
+	/**
+	 * 从url获取图片转化成为Bitmap
+	 * 
+	 * @param imgUrl
+	 * @return
+	 */
+	public static Bitmap getImage(String imgUrl) {
+
+		Bitmap bitmap = null;
+		byte[] data = null;
+		try {
+			// 建立URL
+			URL url = new URL(imgUrl);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setReadTimeout(5000);
+
+			InputStream input = conn.getInputStream();
+			data = readInputStream(input);
+
+			// 把二进制图片转成位图
+			bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+			input.close();
+
+			System.out.println("下载完毕！");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return bitmap;
+	}
+
+	public static byte[] readInputStream(InputStream input) {
+		ByteArrayOutputStream output = new ByteArrayOutputStream();
+		try {
+			byte[] buffer = new byte[1024];
+			int len = 0;
+			while ((len = input.read(buffer)) != -1) {
+				output.write(buffer, 0, len);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return output.toByteArray();
+	}
+
+}

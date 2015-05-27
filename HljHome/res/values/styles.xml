@@ -1,0 +1,168 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="theme_fullScreen" parent="AppTheme">
+
+        <!-- 设置无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 设置全屏 -->
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="Theme.customTheme" parent="@android:style/Theme.Holo">
+        <item name="android:textViewStyle">@style/WidgetHoloTextViewCustom</item>
+        <!-- 设置无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 设置全屏 -->
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="WidgetHoloTextViewCustom">
+        <item name="android:textAppearance">?android:textAppearanceSmall</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textSelectHandleLeft">?android:textSelectHandleLeft</item>
+        <item name="android:textSelectHandleRight">?android:textSelectHandleRight</item>
+        <item name="android:textSelectHandle">?android:textSelectHandle</item>
+        <item name="android:textEditPasteWindowLayout">?android:textEditPasteWindowLayout</item>
+        <item name="android:textEditNoPasteWindowLayout">?android:textEditNoPasteWindowLayout</item>
+        <item name="android:textEditSidePasteWindowLayout">?android:textEditSidePasteWindowLayout</item>
+        <item name="android:textEditSideNoPasteWindowLayout">?android:textEditSideNoPasteWindowLayout</item>
+        <item name="android:textCursorDrawable">?android:textCursorDrawable</item>
+        <item name="android:textEditSuggestionItemLayout">?android:textEditSuggestionItemLayout</item>
+    </style>
+
+    <style name="CustomAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/hyperspace_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/hyperspace_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/hyperspace_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/hyperspace_out</item>
+    </style>
+
+    <style name="MediaController_SeekBar">
+        <item name="android:minHeight">16dip</item>
+        <item name="android:maxHeight">16dip</item>
+        <item name="android:progressDrawable">@drawable/mediacontroller_seekbar</item>
+        <item name="android:thumb">@drawable/mediacontroller_seekbar_thumb</item>
+    </style>
+
+    <style name="MediaController_Text">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextOnMainLayout_new">
+        <item name="android:textSize">28.0dip</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/hot_text_bg</item>
+        <item name="android:padding">5.0dip</item>
+        <item name="android:focusable">true</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:marqueeRepeatLimit">marquee_forever</item>
+    </style>
+
+    <style name="TitleButton">
+        <item name="android:textSize">32.0dip</item>
+        <item name="android:textColor">@drawable/title_textcolor_selector</item>
+        <item name="android:background">@drawable/title_button_selector</item>
+    </style>
+
+    <style name="set_button_leftpart">
+        <item name="android:textSize">24.0dip</item>
+        <item name="android:textColor">@color/set_button_textcolor</item>
+        <item name="android:gravity">left|center</item>
+        <item name="android:background">@drawable/set_item_selector</item>
+        <item name="android:paddingLeft">20.0dip</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- ScrollView 通用样式 fill weight 1 -->
+    <style name="scrollview_fill">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:fillViewport">true</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+
+    <style name="Theme_Dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- 边框 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是悬浮还是覆盖 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 是否有系统自带标题栏 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 背景是否变暗 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 去除黑色背景 -->
+    </style>
+
+    <style name="CustomDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Player_buf_pro">
+        <item name="android:maxWidth">182.0dip</item>
+        <item name="android:maxHeight">182.0dip</item>
+        <item name="android:indeterminate">false</item>
+        <item name="android:indeterminateDrawable">@drawable/player_progress_img</item>
+        <item name="android:minWidth">182.0dip</item>
+        <item name="android:minHeight">182.0dip</item>
+    </style>
+    
+    <style name="MyDialog" parent="@android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <!-- vlc -->
+
+    <style name="info_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.VLC" parent="Theme.Sherlock">
+        <item name="android:actionBarStyle">@style/ActionBar</item>
+        <item name="actionBarStyle">@style/ActionBar</item>
+        <item name="windowContentOverlay">@drawable/actionbar_shadow</item>
+    </style>
+
+    <style name="ActionBar" parent="Widget.Sherlock.ActionBar">
+        <item name="android:background">@drawable/actionbar_background</item>
+        <item name="background">@drawable/actionbar_background</item>
+    </style>
+
+</resources>

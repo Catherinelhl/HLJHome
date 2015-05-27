@@ -1,0 +1,28 @@
+﻿<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title></title>
+<script>
+function J_get(name){
+var js_get =self.window.document.location.href;
+var start =js_get.split('.html?' + name + '=');
+if (start.length==1) return '';
+return unescape(start[1]);}
+var id = J_get('id');
+</script>
+</head>
+
+<body topmargin="0" leftmargin="0" bgcolor="#000000" scroll="no">
+
+
+
+<script>
+document.write('<embed width="100%" height="100%" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="src='+id+'&autoPlay=true" allowfullscreen="true" quality="high" bgcolor="#FFFFFF" wmode="transparent" name="movie_player" id="movie_player" src="smp.swf" type="application/x-shockwave-flash"></embed>');
+</script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog"
+    android:layout_width="1280dip"
+    android:layout_height="700dip"
+    android:background="#00000000" >
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="280dip"
+        android:text="正在为您检测环境配置..."
+        android:textColor="#ddd"
+        android:textSize="30dip" />
+
+    <ProgressBar
+        android:id="@+id/loadProgressBar"
+        style="@android:style/Widget.ProgressBar.Large.Inverse"
+        android:layout_width="150dip"
+        android:layout_height="150dip"
+        android:layout_below="@id/text"
+        android:layout_centerHorizontal="true"
+        android:indeterminateDrawable="@drawable/color_progressbar" />
+    <!-- android:c="@drawable/icon_loading" /> -->
+
+</RelativeLayout>

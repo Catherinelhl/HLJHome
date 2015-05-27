@@ -1,0 +1,482 @@
+package com.hlj.view;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+import net.tsz.afinal.FinalBitmap;
+
+import com.hlj.HomeActivity.LiveActivity;
+import com.hlj.HomeActivity.MainActivity;
+import com.hlj.HomeActivity.R;
+import com.hlj.HomeActivity.TVBackActivity;
+import com.hlj.HomeActivity.TVLiveActivity;
+import com.hlj.HomeActivity.TVVitaBackActivity;
+import com.hlj.HomeActivity.TvListBackActivity;
+import com.hlj.net.BitmapWorkerTask;
+import com.hlj.utils.BitmapTask;
+import com.hlj.utils.CommonTools;
+import com.hlj.utils.ImageLoader;
+import com.hlj.utils.ImageUtils;
+import com.hlj.utils.BitmapTask.PostCallBack;
+import com.hlj.widget.PwdcheckWindow;
+import com.hlj.widget.PwdcheckWindow.PwdCheckCallBack;
+import com.live.video.constans.HomeConstants;
+
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.os.Handler;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.LinearLayout.LayoutParams;
+import android.widget.VideoView;
+
+public class TvShowLayout extends LinearLayout implements LayoutInterface,
+		View.OnFocusChangeListener, View.OnClickListener {
+
+	ScaleAnimEffect animEffect = new ScaleAnimEffect();
+	private ImageView[] backgrouds = new ImageView[4];
+	private ImageView[] poster = new ImageView[4];
+	private ImageView[] tvLog = new ImageView[4];
+	private FrameLayout[] fls = new FrameLayout[4];
+	private Context mContext;
+
+	private RelativeLayout tv_show_layout;
+	private FrameLayout tv_show_tv;
+	private VideoView videoView;
+	private ImageView whiteBorder;
+
+	private ImageView tv_show_reflected_img;
+
+	private ImageView tv_show_image;
+
+	ImageLoader imageLoader;
+
+	TvShowLayout instance;
+
+	FinalBitmap fb;
+
+	public TvShowLayout(Context context) {
+		super(context);
+		this.mContext = context;
+		// imageLoader = new ImageLoader(context, 0);
+		instance = this;
+
+		// fb = FinalBitmap.create(context);
+		// fb.configLoadingImage(0);
+	}
+
+	@Override
+	public void destroy() {
+		this.tv_show_reflected_img = null;
+		this.tv_show_layout = null;
+		this.tv_show_image = null;
+		this.tv_show_tv = null;
+		this.videoView = null;
+		for (int i = 0; i < backgrouds.length; i++) {
+			backgrouds[i] = null;
+			poster[i] = null;
+			tvLog[i] = null;
+			fls[i] = null;
+		}
+	}
+
+	@Override
+	public void initListener() {
+		this.tv_show_tv.setOnFocusChangeListener(this);
+		this.tv_show_tv.setOnClickListener(this);
+	}
+
+	private void showOnFocusAnimation(final int i) {
+		// tv_show_layout.bringToFront();
+		// this.whiteBorder.bringToFront();
+		// this.fls[i].bringToFront();
+		// this.tvLog[i].bringToFront();
+		// this.poster[i].bringToFront();
+		// this.backgrouds[i].bringToFront();
+		this.animEffect.setAttributs(1.0F, 1.1F, 1.0F, 1.1F, 100L);
+		Animation localAnimation = this.animEffect.createAnimation();
+		localAnimation.setAnimationListener(new AnimationListener() {
+
+			@Override
+			public void onAnimationStart(Animation animation) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				backgrouds[i].startAnimation(animEffect.alphaAnimation(0.0F,
+						1.0F, 150L, 0L));
+				backgrouds[i].setVisibility(View.VISIBLE);
+			}
+		});
+		this.tvLog[i].startAnimation(localAnimation);
+		this.poster[i].startAnimation(localAnimation);
+	}
+
+	private void showLooseFocusAinimation(int paramInt) {
+		this.animEffect.setAttributs(1.1F, 1.0F, 1.1F, 1.0F, 100L);
+		this.poster[paramInt].startAnimation(this.animEffect.createAnimation());
+		this.tvLog[paramInt].startAnimation(this.animEffect.createAnimation());
+		this.backgrouds[paramInt].setVisibility(View.GONE);
+	}
+
+	@Override
+	public void initView() {
+		setLayoutParams(new LinearLayout.LayoutParams(
+				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+		setGravity(Gravity.CENTER_HORIZONTAL);
+		setOrientation(VERTICAL);
+
+		addView(LayoutInflater.from(this.mContext).inflate(R.layout.tv_show,
+				null));
+		tv_show_layout = (RelativeLayout) findViewById(R.id.tv_show_layout);
+		tv_show_tv = (FrameLayout) findViewById(R.id.tv_show_tv);
+		videoView = (VideoView) findViewById(R.id.tv_show_video);
+		tv_show_image = (ImageView) findViewById(R.id.tv_show_image);
+
+		// videoView.setZOrderOnTop(true);
+		this.fls[0] = ((FrameLayout) findViewById(R.id.tv_show_fl_0));
+		this.fls[1] = ((FrameLayout) findViewById(R.id.tv_show_fl_1));
+		this.fls[2] = ((FrameLayout) findViewById(R.id.tv_show_fl_2));
+		this.fls[3] = ((FrameLayout) findViewById(R.id.tv_show_fl_3));
+		this.tvLog[0] = ((ImageView) findViewById(R.id.tv_show_log_0));
+		this.tvLog[1] = ((ImageView) findViewById(R.id.tv_show_log_1));
+		this.tvLog[2] = ((ImageView) findViewById(R.id.tv_show_log_2));
+		this.tvLog[3] = ((ImageView) findViewById(R.id.tv_show_log_3));
+		this.poster[0] = ((ImageView) findViewById(R.id.tv_show_post_0));
+		this.poster[1] = ((ImageView) findViewById(R.id.tv_show_post_1));
+		this.poster[2] = ((ImageView) findViewById(R.id.tv_show_post_2));
+		this.poster[3] = ((ImageView) findViewById(R.id.tv_show_post_3));
+		this.backgrouds[0] = ((ImageView) findViewById(R.id.tv_show_bg_0));
+		this.backgrouds[1] = ((ImageView) findViewById(R.id.tv_show_bg_1));
+		this.backgrouds[2] = ((ImageView) findViewById(R.id.tv_show_bg_2));
+		this.backgrouds[3] = ((ImageView) findViewById(R.id.tv_show_bg_3));
+
+		tv_show_reflected_img = ((ImageView) findViewById(R.id.tv_show_reflected_img));
+		int[] bgSelector = { R.drawable.blue_no_shadow_a,
+				R.drawable.dark_no_shadow_a, R.drawable.green_no_shadow_a,
+				R.drawable.orange_no_shadow_a, R.drawable.pink_no_shadow_a,
+				R.drawable.red_no_shadow_a, R.drawable.yellow_no_shadow_a };
+		int i = bgSelector.length;
+
+		int[] newRandomArray = CommonTools.getRandomList(bgSelector);
+
+		for (int j = 0; j < 4; j++) {
+			this.whiteBorder = ((ImageView) findViewById(R.id.white_boder));
+			FrameLayout.LayoutParams localLayoutParams = new FrameLayout.LayoutParams(
+					220, 220);
+			localLayoutParams.leftMargin = 625;
+			localLayoutParams.topMargin = 10;
+			this.whiteBorder.setLayoutParams(localLayoutParams);
+
+			this.poster[j].setOnClickListener(this);
+			this.poster[j].setOnFocusChangeListener(this);
+			this.poster[j].setImageResource(newRandomArray[j]);
+			this.backgrouds[j].setVisibility(View.GONE);
+		}
+
+		Bitmap reflectionBitmap6 = ImageUtils.createCutReflectedImage(
+				ImageUtils.convertViewToBitmap(fls[2]), 0);
+		tv_show_reflected_img.setImageBitmap(reflectionBitmap6);
+
+		initListener();
+	}
+
+	private int randomTemp = -1;
+
+	public int createRandom(int paramInt) {
+		Random r = new Random();
+		int i = r.nextInt(paramInt);
+		return i;
+	}
+
+	@Override
+	public void loadData() {
+		// TODO Auto-generated method stub
+
+	}
+
+	ArrayList<VideoInfo> list = new ArrayList<VideoInfo>();
+
+	public ArrayList<VideoInfo> getList() {
+		return list;
+	}
+
+	public void setList(ArrayList<VideoInfo> list) {
+		this.list = list;
+	}
+
+	@Override
+	public void updateData() {
+		if (null != list && list.size() > 0) {
+
+			VideoInfo info = (VideoInfo) list.get(0);
+			// imageLoader.displayImage(info.imageUrl, tv_show_image);
+
+			// imageLoader.displayImage(list.get(1).imageUrl, tvLog[0]);
+			// imageLoader.displayImage(list.get(2).imageUrl, tvLog[2]);
+			// fb.display(tv_show_image, info.imageUrl);
+			// fb.display(tvLog[0], list.get(1).imageUrl);
+			// fb.display(tvLog[2], list.get(2).imageUrl);
+
+			new BitmapWorkerTask(mContext, tv_show_image, true, true, null)
+					.execute(info.imageUrl);
+
+			new BitmapWorkerTask(mContext, tvLog[0], true, true, null)
+					.execute(list.get(1).imageUrl);
+
+			new BitmapWorkerTask(mContext, tvLog[2], true, true, null)
+					.execute(list.get(2).imageUrl);
+
+			BitmapTask task = new BitmapTask(tvLog[2], callback);
+			task.execute(list.get(2).imageUrl);
+		}
+
+	}
+
+	PostCallBack callback = new PostCallBack() {
+
+		@Override
+		public void post(Bitmap paramBitmap) {
+			handlerReflectionBitmap();
+		}
+	};
+
+	private void handlerReflectionBitmap() {
+		Bitmap reflectionBitmap6 = ImageUtils.createCutReflectedImage(
+				ImageUtils.convertViewToBitmap(fls[2]), 0);
+		tv_show_reflected_img.setImageBitmap(reflectionBitmap6);
+	}
+
+	int position = 0;
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.tv_show_tv:
+			position = 0;
+			if (null != list && list.size() > 0) {
+				if ("0".equals(list.get(position).childLock)) {
+					Intent it2 = new Intent(mContext, MainActivity.class);
+					// Intent it2 = new Intent(mContext, LiveActivity.class);
+					mContext.startActivity(it2);
+				} else {
+					if (HomeConstants.HAS_LOCK.equals(HomeConstants.isVersionLock)
+							&& HomeConstants.HAS_LOCK
+									.equals(HomeConstants.isPrimaryLock)
+							&& HomeConstants.HAS_LOCK
+									.equals(HomeConstants.isTempLock)){
+						// 弹出保护框
+						PwdcheckWindow view = new PwdcheckWindow(mContext, v,
+								pwdcallback);
+					} else {
+						Intent it2 = new Intent(mContext, MainActivity.class);
+						// Intent it2 = new Intent(mContext,
+						// LiveActivity.class);
+						mContext.startActivity(it2);
+					}
+
+				}
+			}
+			break;
+		case R.id.tv_show_post_0:
+			position = 1;
+			if (null != list && list.size() > 0) {
+				if ("0".equals(list.get(position).childLock)) {
+					Intent it = new Intent(mContext, MainActivity.class);
+					// Intent it = new Intent(mContext, LiveActivity.class);
+					mContext.startActivity(it);
+				} else {
+					if (HomeConstants.HAS_LOCK.equals(HomeConstants.isVersionLock)
+							&& HomeConstants.HAS_LOCK
+									.equals(HomeConstants.isPrimaryLock)
+							&& HomeConstants.HAS_LOCK
+									.equals(HomeConstants.isTempLock)) {
+						// 弹出保护框
+						PwdcheckWindow view = new PwdcheckWindow(mContext, v,
+								pwdcallback);
+					} else {
+						Intent it = new Intent(mContext, MainActivity.class);
+						// Intent it = new Intent(mContext, LiveActivity.class);
+						mContext.startActivity(it);
+					}
+				}
+			}
+			break;
+		case R.id.tv_show_post_2:
+			position = 2;
+			if (null != list && list.size() > 0) {
+				if ("0".equals(list.get(position).childLock)) {
+					// Intent it1 = new Intent(mContext, TVBackActivity.class);
+					Intent it1 = new Intent(mContext, TvListBackActivity.class);
+					mContext.startActivity(it1);
+				} else {
+					if (HomeConstants.HAS_LOCK.equals(HomeConstants.isVersionLock)
+							&& HomeConstants.HAS_LOCK
+									.equals(HomeConstants.isPrimaryLock)
+							&& HomeConstants.HAS_LOCK
+									.equals(HomeConstants.isTempLock)) {
+						// 弹出保护框
+						PwdcheckWindow view = new PwdcheckWindow(mContext, v,
+								pwdcallback);
+					} else {
+						// Intent it1 = new Intent(mContext,
+						// TVBackActivity.class);
+						Intent it1 = new Intent(mContext,
+								TvListBackActivity.class);
+						mContext.startActivity(it1);
+					}
+				}
+			}
+			break;
+
+		default:
+			break;
+		}
+
+	}
+
+	PwdCheckCallBack pwdcallback = new PwdCheckCallBack() {
+
+		@Override
+		public void check(String str) {
+			if ("1".equals(str)) {
+				if (position == 0) {
+					Intent it2 = new Intent(mContext, MainActivity.class);
+					// Intent it2 = new Intent(mContext, LiveActivity.class);
+					mContext.startActivity(it2);
+				} else if (position == 1) {
+					Intent it = new Intent(mContext, MainActivity.class);
+					// Intent it = new Intent(mContext, LiveActivity.class);
+					mContext.startActivity(it);
+				} else if (position == 2) {
+					// Intent it1 = new Intent(mContext, TVBackActivity.class);
+					Intent it1 = new Intent(mContext, TvListBackActivity.class);
+					mContext.startActivity(it1);
+				}
+
+			}
+		}
+
+	};
+
+	private void flyWhiteBorder(int paramInt1, int paramInt2,
+			float paramFloat1, float paramFloat2) {
+		if ((this.whiteBorder == null))
+			return;
+		this.whiteBorder.setVisibility(View.VISIBLE);
+		int i = this.whiteBorder.getWidth();
+		int j = this.whiteBorder.getHeight();
+		ViewPropertyAnimator localViewPropertyAnimator = this.whiteBorder
+				.animate();
+		localViewPropertyAnimator.setDuration(150L);
+		localViewPropertyAnimator.scaleX(paramInt1 / i);
+		localViewPropertyAnimator.scaleY(paramInt2 / j);
+		localViewPropertyAnimator.x(paramFloat1);
+		localViewPropertyAnimator.y(paramFloat2);
+		localViewPropertyAnimator.start();
+	}
+
+	@Override
+	public void onFocusChange(View v, boolean hasFocus) {
+		switch (v.getId()) {
+		case R.id.tv_show_post_0:
+			if (hasFocus) {
+				showOnFocusAnimation(0);
+				whiteBorder.getLayoutParams().width = 275;
+				whiteBorder.getLayoutParams().height = 220;
+
+				flyWhiteBorder(275, 220, 823.0F, 40.0F);
+			} else {
+				this.whiteBorder.setVisibility(View.INVISIBLE);
+				showLooseFocusAinimation(0);
+			}
+
+			break;
+		case R.id.tv_show_post_1:
+			if (hasFocus) {
+				showOnFocusAnimation(1);
+				flyWhiteBorder(220, 220, 930.0F, 40.0F);
+			} else {
+				showLooseFocusAinimation(1);
+				this.whiteBorder.setVisibility(View.INVISIBLE);
+			}
+			break;
+		case R.id.tv_show_post_2:
+			if (hasFocus) {
+				showOnFocusAnimation(2);
+				whiteBorder.getLayoutParams().width = 275;
+				whiteBorder.getLayoutParams().height = 220;
+				flyWhiteBorder(275, 220, 823.0F, 245.0F);
+			} else {
+				showLooseFocusAinimation(2);
+				this.whiteBorder.setVisibility(View.INVISIBLE);
+			}
+			break;
+		case R.id.tv_show_post_3:
+			if (hasFocus) {
+				showOnFocusAnimation(3);
+				flyWhiteBorder(220, 220, 930.0F, 245.0F);
+			} else {
+				showLooseFocusAinimation(3);
+				this.whiteBorder.setVisibility(View.INVISIBLE);
+			}
+			break;
+		case R.id.tv_show_tv:
+			if (hasFocus) {
+				tv_show_tv.bringToFront();
+				tv_show_tv.setBackgroundResource(R.drawable.tv_bg_selected);
+
+				// mHandler.postDelayed(play, 3000);
+			} else {
+				tv_show_tv.setBackgroundResource(R.drawable.tv_bg_default);
+
+				// mHandler.removeCallbacks(play);
+				// stopTv();
+				// tv_show_image.setVisibility(View.VISIBLE);
+			}
+
+			break;
+		}
+
+	}
+
+	private void stopTv() {
+		if (videoView.isPlaying()) {
+			videoView.stopPlayback();
+		}
+	}
+
+	String path = "http://file.cdltv.com/wfile/luje/d1x213h2d3r2.mp4";
+
+	private Handler mHandler = new Handler();
+	Runnable play = new Runnable() {
+
+		@Override
+		public void run() {
+			if (!tv_show_tv.isFocused() || videoView.isPlaying())
+				return;
+			tv_show_image.setVisibility(View.GONE);
+			videoView.setVideoPath(path);
+			videoView.start();
+		}
+	};
+
+}

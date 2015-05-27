@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list android:oneshot="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_1" />
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_2" />
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_3" />
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_4" />
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_5" />
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_6" />
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_7" />
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_8" />
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_9" />
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_10" />
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_11" />
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_12" />
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_13" />
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_14" />
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_15" />
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_16" />
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_17" />
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_18" />
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_19" />
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_20" />
+    <item android:duration="50" android:drawable="@drawable/live_control_main_bufgif_21" />
+</animation-list>

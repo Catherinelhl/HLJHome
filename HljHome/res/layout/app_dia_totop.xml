@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/white_border"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/filter_focus"
+        android:gravity="center"
+        android:text="确定显示位置"
+        android:textColor="@color/detail_point"
+        android:textSize="24.0dip" />
+
+    <GridView
+        android:id="@id/top_app_position_grid"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#b2b2b2b2"
+        android:horizontalSpacing="5.0dip"
+        android:numColumns="5"
+        android:scrollbars="none"
+        android:verticalSpacing="15.0dip" />
+
+</LinearLayout>

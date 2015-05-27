@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <Button android:textSize="24.0dip" android:layout_marginLeft="30dip" android:textColor="@color/detail_point" android:layout_gravity="center_horizontal" android:id="@id/setting_speed_source" android:background="@drawable/video_details_btn_selector" android:layout_width="200.0dip" android:layout_height="50.0dip" android:text="开始资源测速" />
+    <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <ImageView android:layout_width="140.0dip" android:layout_height="60.0dip" android:src="@drawable/source_cntv_focus" android:scaleType="fitCenter" />
+        <ProgressBar android:layout_gravity="center_vertical" android:id="@id/down_pb1" android:background="@null" android:layout_width="500.0dip" android:layout_height="8.0dip" android:max="100" android:progressDrawable="@drawable/progressbar_layer" style="?android:attr/progressBarStyleHorizontal" />
+        <TextView android:textSize="20.0dip" android:textColor="@color/white" android:layout_gravity="center_vertical" android:id="@id/tv1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="等待测试……" />
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <ImageView android:layout_width="140.0dip" android:layout_height="60.0dip" android:src="@drawable/source_dianlv_huashu_focus" android:scaleType="fitCenter" />
+        <ProgressBar android:layout_gravity="center_vertical" android:id="@id/down_pb2" android:background="@null" android:layout_width="500.0dip" android:layout_height="8.0dip" android:max="100" android:progressDrawable="@drawable/progressbar_layer" style="?android:attr/progressBarStyleHorizontal" />
+        <TextView android:textSize="20.0dip" android:textColor="@color/white" android:layout_gravity="center_vertical" android:id="@id/tv2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="等待测试……" />
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <ImageView android:layout_width="140.0dip" android:layout_height="60.0dip" android:src="@drawable/source_qq_focus" android:scaleType="fitCenter" />
+        <ProgressBar android:layout_gravity="center_vertical" android:id="@id/down_pb3" android:background="@null" android:layout_width="500.0dip" android:layout_height="8.0dip" android:max="100" android:progressDrawable="@drawable/progressbar_layer" style="?android:attr/progressBarStyleHorizontal" />
+        <TextView android:textSize="20.0dip" android:textColor="@color/white" android:layout_gravity="center_vertical" android:id="@id/tv3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="等待测试……" />
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <ImageView android:layout_width="140.0dip" android:layout_height="60.0dip" android:src="@drawable/baidu_focus" android:scaleType="fitCenter" />
+        <ProgressBar android:layout_gravity="center_vertical" android:id="@id/down_pb4" android:background="@null" android:layout_width="500.0dip" android:layout_height="8.0dip" android:max="100" android:progressDrawable="@drawable/progressbar_layer" style="?android:attr/progressBarStyleHorizontal" />
+        <TextView android:textSize="20.0dip" android:textColor="@color/white" android:layout_gravity="center_vertical" android:id="@id/tv4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="等待测试……" />
+    </LinearLayout>
+    <TextView android:textSize="24.0dip" android:textColor="@color/white" android:id="@id/bottomtv" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="20.0dip" android:text="测试过程中，请稍候……" />
+    <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <ImageView android:id="@id/ssim1" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/source_iqiyi_focus" />
+        <ImageView android:id="@id/ssim2" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/source_letv_focus" />
+        <ImageView android:id="@id/ssim3" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/source_qq_focus" />
+        <ImageView android:id="@id/ssim4" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/source_xunleilx_focus" />
+    </LinearLayout>
+</LinearLayout>

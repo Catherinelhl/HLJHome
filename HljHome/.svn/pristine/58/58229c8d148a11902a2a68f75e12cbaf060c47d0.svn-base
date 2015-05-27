@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:id="@id/player_menu_list" android:background="@drawable/menu_bg_selector" android:focusable="true" android:focusableInTouchMode="true" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="10.0dip">
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_tvlist" />
+        <TextView android:textSize="30.0dip" android:textStyle="bold" android:textColor="@color/white" android:gravity="right|center" android:layout_width="wrap_content" android:layout_height="fill_parent" android:text="频道列表：" />
+        <TextView android:textSize="30.0dip" android:textColor="@color/white" android:gravity="center" android:id="@id/player_menu_source_tv" android:layout_width="216.0dip" android:layout_height="fill_parent" android:layout_marginLeft="20.0dip" android:text="按OK键呼出" />
+    </LinearLayout>
+    <LinearLayout android:id="@id/player_menu_voice" android:background="@drawable/menu_bg_selector" android:focusable="true" android:focusableInTouchMode="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="10.0dip">
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_voice" />
+        <TextView android:textSize="30.0dip" android:textStyle="bold" android:textColor="@color/white" android:gravity="right|center" android:layout_width="wrap_content" android:layout_height="fill_parent" android:text="音量调节：" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/player_menu_voice_left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:src="@drawable/menu_left" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/menu_voice_1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="9.0dip" android:src="@drawable/menu_voice_outuse" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/menu_voice_2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:src="@drawable/menu_voice_outuse" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/menu_voice_3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:src="@drawable/menu_voice_outuse" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/menu_voice_4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:src="@drawable/menu_voice_outuse" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/menu_voice_5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:src="@drawable/menu_voice_outuse" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/menu_voice_6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:src="@drawable/menu_voice_outuse" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/menu_voice_7" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:src="@drawable/menu_voice_outuse" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/menu_voice_8" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:src="@drawable/menu_voice_outuse" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/menu_voice_9" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:src="@drawable/menu_voice_outuse" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/menu_voice_10" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:src="@drawable/menu_voice_outuse" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/player_menu_voice_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="9.0dip" android:src="@drawable/menu_right" />
+    </LinearLayout>
+    <LinearLayout android:id="@id/player_menu_source" android:background="@drawable/menu_bg_selector" android:focusable="true" android:focusableInTouchMode="true" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="10.0dip">
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_sour" />
+        <TextView android:textSize="30.0dip" android:textStyle="bold" android:textColor="@color/white" android:gravity="right|center" android:layout_width="wrap_content" android:layout_height="fill_parent" android:text="视频来源：" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/player_menu_source_left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:src="@drawable/menu_left" />
+        <TextView android:textSize="30.0dip" android:textColor="@color/white" android:gravity="center" android:id="@id/player_menu_source_tv" android:layout_width="190.0dip" android:layout_height="fill_parent" android:text="切换视频源" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/player_menu_source_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_right" />
+    </LinearLayout>
+    <LinearLayout android:id="@id/player_menu_sclar" android:background="@drawable/menu_bg_selector" android:focusable="true" android:focusableInTouchMode="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="10.0dip">
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_scaler" />
+        <TextView android:textSize="30.0dip" android:textStyle="bold" android:textColor="@color/white" android:gravity="right|center" android:layout_width="wrap_content" android:layout_height="fill_parent" android:text="画面比例：" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/player_menu_sclar_left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:src="@drawable/menu_left" />
+
+        <TextView
+            android:id="@id/player_menu_sclar_tv"
+            android:layout_width="190.0dip"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text="16:9"
+            android:textColor="@color/white"
+            android:textSize="30.0dip" />
+
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/player_menu_sclar_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_right" />
+    </LinearLayout>
+    <LinearLayout android:id="@id/player_menu_fav" android:background="@drawable/menu_bg_selector" android:focusable="true" android:focusableInTouchMode="true" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="10.0dip">
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_fav" />
+        <TextView android:textSize="30.0dip" android:textStyle="bold" android:textColor="@color/white" android:layout_gravity="center_vertical" android:id="@id/player_menu_fav_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="100.0dip" android:text="收藏当前频道" />
+    </LinearLayout>
+    <LinearLayout android:id="@id/player_menu_sharp" android:background="@drawable/menu_bg_selector" android:focusable="true" android:focusableInTouchMode="true" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="10.0dip">
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_qingxidu" />
+        <TextView android:textSize="30.0dip" android:textStyle="bold" android:textColor="@color/white" android:gravity="right|center" android:layout_width="wrap_content" android:layout_height="fill_parent" android:text="画面质量：" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/player_menu_sharp_left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:src="@drawable/menu_left" />
+        <TextView android:textSize="30.0dip" android:textColor="@color/white" android:gravity="center" android:id="@id/player_menu_sharp_tv" android:layout_width="190.0dip" android:layout_height="fill_parent" android:text="高清" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/player_menu_sharp_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_right" />
+    </LinearLayout>
+    <LinearLayout android:id="@id/player_menu_srt" android:background="@drawable/menu_bg_selector" android:focusable="true" android:focusableInTouchMode="true" android:visibility="gone" android:descendantFocusability="beforeDescendants" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="10.0dip">
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_subtitl" />
+        <TextView android:textSize="30.0dip" android:textStyle="bold" android:textColor="@color/white" android:gravity="right|center" android:layout_width="wrap_content" android:layout_height="fill_parent" android:text="外挂字幕：" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/player_menu_srt_left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:src="@drawable/menu_left" />
+        <TextView android:textSize="30.0dip" android:textColor="@color/white" android:gravity="center" android:id="@id/player_menu_srt_tv" android:layout_width="190.0dip" android:layout_height="fill_parent" android:text="关闭" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/player_menu_srt_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_right" />
+    </LinearLayout>
+    <LinearLayout android:id="@id/player_menu_srt_search" android:background="@drawable/menu_bg_selector" android:focusable="true" android:focusableInTouchMode="true" android:visibility="gone" android:descendantFocusability="beforeDescendants" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="10.0dip">
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/menu_so" />
+        <TextView android:textSize="30.0dip" android:textStyle="bold" android:textColor="@color/white" android:gravity="center" android:layout_gravity="center_vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="字幕" android:layout_weight="1.0" />
+    </LinearLayout>
+    <LinearLayout android:id="@id/player_menu_chooseSet" android:background="@drawable/menu_bg_selector" android:focusable="true" android:focusableInTouchMode="true" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/player_menu_chooseset" />
+        <TextView android:textSize="30.0dip" android:textStyle="bold" android:textColor="@color/white" android:gravity="center" android:layout_gravity="center_vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="选集" android:layout_weight="1.0" />
+    </LinearLayout>
+</LinearLayout>

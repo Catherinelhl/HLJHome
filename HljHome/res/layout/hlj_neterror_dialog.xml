@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="500.0dip"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="500.0dip"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5.0dip"
+        android:background="@drawable/menu_bg_n"
+        android:orientation="vertical"
+        android:paddingBottom="5.0dip" >
+
+        <TextView
+            android:id="@id/itv_exit_msg_line1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5.0dip"
+            android:textColor="@color/white"
+            android:textSize="22.0dip"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@id/itv_exit_msg"
+            android:layout_width="500.0dip"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:visibility="visible" >
+
+            <TextView
+                android:id="@+id/wrong_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5.0dip"
+                android:text="亲，你的检测结果不好哦！"
+                android:textColor="@color/detail_point"
+                android:textSize="40.0dip" />
+
+            <TextView
+                android:id="@id/itv_exit_msg_line2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5.0dip"
+                android:minLines="2"
+                android:textColor="@color/detail_point"
+                android:textSize="26.0dip" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@id/itv_exit_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/menu_bg_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/itv_exit_ok"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@id/itv_exit_confirm_tv"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:text="进入网络设置页面"
+            android:textColor="@color/white"
+            android:textSize="26.0dip" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@id/itv_exit_cancle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5.0dip"
+        android:background="@drawable/menu_bg_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/itv_exit_cancle"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@id/itv_exit_cancle_tv"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:text="重新认证"
+            android:textColor="@color/white"
+            android:textSize="26.0dip" />
+    </LinearLayout>
+
+</LinearLayout>

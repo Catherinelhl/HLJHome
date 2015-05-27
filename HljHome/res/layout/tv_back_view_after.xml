@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:background="@drawable/video_details_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:paddingLeft="0.0dip" android:paddingTop="0.0dip" android:paddingRight="0.0dip" android:paddingBottom="10.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent">
+       
+       <com.hlj.view.CommonTitleView
+        android:id="@id/commonTitle" 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="top"
+        />
+        
+        <ImageView android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginTop="5.0dip" android:layout_marginBottom="5.0dip" android:src="@drawable/line760" android:scaleType="fitXY" />
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <FrameLayout android:layout_marginLeft="30dip" android:layout_width="wrap_content" android:layout_height="fill_parent">
+                <ListView android:id="@id/tv_back_channles" android:background="@drawable/hao366x180" android:focusableInTouchMode="true" android:nextFocusRight="@id/tv_back_videos" android:layout_width="300.0dip" android:layout_height="fill_parent" />
+                <ImageView android:layout_width="300.0dip" android:layout_height="fill_parent" android:src="@drawable/tv_back_300x670" android:scaleType="fitEnd" />
+            </FrameLayout>
+            <FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+                <LinearLayout android:layout_gravity="right" android:orientation="vertical" android:layout_width="300.0dip" android:layout_height="wrap_content">
+                    <TextView android:textSize="26.0dip" android:textColor="@color/dark" android:ellipsize="marquee" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:text="当前频道:" android:singleLine="true" android:marqueeRepeatLimit="marquee_forever" />
+                    <TextView android:textSize="22.0dip" android:textColor="@color/white" android:ellipsize="marquee" android:id="@id/tv_back_current_channel" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="" android:singleLine="true" android:marqueeRepeatLimit="marquee_forever" />
+                    <TextView android:textSize="26.0dip" android:textColor="@color/dark" android:ellipsize="marquee" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:text="当前播放栏目:" android:singleLine="true" android:marqueeRepeatLimit="marquee_forever" />
+                    <TextView android:textSize="22.0dip" android:textColor="@color/white" android:ellipsize="marquee" android:id="@id/tv_back_current_tv" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="" android:singleLine="true" android:marqueeRepeatLimit="marquee_forever" />
+                    <TextView android:textSize="26.0dip" android:textColor="@color/dark" android:ellipsize="marquee" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:text="下一个栏目:" android:singleLine="true" android:marqueeRepeatLimit="marquee_forever" />
+                    <TextView android:textSize="22.0dip" android:textColor="@color/white" android:ellipsize="marquee" android:id="@id/tv_back_next_tv" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="" android:singleLine="true" android:marqueeRepeatLimit="marquee_forever" />
+                </LinearLayout>
+                <LinearLayout android:layout_gravity="bottom" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="25.0dip" android:layout_marginRight="25.0dip">
+                    <RadioGroup android:layout_gravity="center_horizontal" android:orientation="horizontal" android:id="@id/tv_back_weekdays" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                        <RadioButton android:textSize="16.0dip" android:textColor="@color/white" android:gravity="center_horizontal" android:id="@id/tv_back_rd_Sunday" android:background="@drawable/tv_back_sunday_selector" android:paddingTop="25.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:button="@null" android:text="" />
+                        <RadioButton android:textSize="16.0dip" android:textColor="@color/white" android:gravity="center_horizontal" android:id="@id/tv_back_rd_Monday" android:background="@drawable/tv_back_monday_selector" android:paddingTop="25.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:button="@null" android:text="" />
+                        <RadioButton android:textSize="16.0dip" android:textColor="@color/white" android:gravity="center_horizontal" android:id="@id/tv_back_rd_Tuesday" android:background="@drawable/tv_back_tuesday_selector" android:paddingTop="25.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:button="@null" android:text="" />
+                        <RadioButton android:textSize="16.0dip" android:textColor="@color/white" android:gravity="center_horizontal" android:id="@id/tv_back_rd_Wednesday" android:background="@drawable/tv_back_wenesday_seletor" android:paddingTop="25.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:button="@null" android:text="" />
+                        <RadioButton android:textSize="16.0dip" android:textColor="@color/white" android:gravity="center_horizontal" android:id="@id/tv_back_rd_Thursday" android:background="@drawable/tv_back_thuresday_selector" android:paddingTop="25.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:button="@null" android:text="" />
+                        <RadioButton android:textSize="16.0dip" android:textColor="@color/white" android:gravity="center_horizontal" android:id="@id/tv_back_rd_Friday" android:background="@drawable/tv_back_friday_selector" android:paddingTop="25.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:button="@null" android:text="" />
+                        <RadioButton android:textSize="16.0dip" android:textColor="@color/detail_point" android:gravity="center_horizontal" android:id="@id/tv_back_rd_Saturday" android:background="@drawable/tv_back_saturday_selector" android:paddingTop="25.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:button="@null" android:text="" />
+                    </RadioGroup>
+                    <ListView android:id="@id/tv_back_videos" android:background="@drawable/tv_back_446x406" android:focusableInTouchMode="true" android:nextFocusUp="@id/tv_back_weekdays" android:layout_width="fill_parent" android:layout_height="250.0dip" />
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <ImageView android:id="@id/back_video_blck" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@color/black" />
+    <RelativeLayout android:background="@drawable/tv_back_tv" android:layout_width="570.0dip" android:layout_height="300.0dip" android:layout_marginLeft="360.0dip" android:layout_marginTop="90.0dip" />
+    <com.hlj.widget.ListVideoView android:id="@id/tv_back_video" android:layout_width="550.0dip" android:layout_height="280.0dip" android:layout_marginLeft="370.0dip" android:layout_marginTop="100.0dip" />
+</FrameLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dip"
+    android:layout_height="200dip"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="horizontal" >
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="@android:style/Widget.ProgressBar.Large.Inverse"
+        android:layout_width="150dip"
+        android:layout_height="150dip"
+        android:indeterminateDrawable="@anim/image_progress" />
+
+    <TextView
+        android:id="@+id/chan_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Loading....."
+        android:textColor="@android:color/darker_gray"
+        android:visibility="gone" />
+
+</LinearLayout>

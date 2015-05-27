@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:id="@+id/chan_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:background="@drawable/listview_item_bg_selector"
+        android:ellipsize="marquee"
+        android:gravity="left|center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:paddingLeft="5.0dip"
+        android:singleLine="true"
+        android:textColor="@drawable/channel_item_textcolor_selector"
+        android:textSize="20.0dip" />
+
+</LinearLayout>

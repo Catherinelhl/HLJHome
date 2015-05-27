@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/launcher52_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="35.0dip"
+        android:paddingRight="35.0dip"
+        android:paddingTop="10.0dip" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设置"
+            android:textColor="#ffb2b2b2"
+            android:textSize="36.0dip" />
+
+        <ImageView
+            android:layout_width="2.0dip"
+            android:layout_height="50.0dip"
+            android:layout_marginLeft="5.0dip"
+            android:layout_marginRight="5.0dip"
+            android:background="#ffb2b2b2" />
+
+        <TextView
+            android:id="@id/set_name1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:textColor="#ff404040"
+            android:textSize="18.0dip" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50.0dip" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50.0dip"
+            android:background="@drawable/setpop"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@id/set_name2"
+                android:layout_width="wrap_content"
+                android:layout_height="50.0dip"
+                android:layout_marginLeft="150.0dip"
+                android:gravity="bottom"
+                android:textColor="@color/white"
+                android:textSize="36.0dip" />
+
+            <ListView
+                android:id="@android:id/list"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dip"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawSelectorOnTop="false"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@id/set_item_log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" />
+    </RelativeLayout>
+
+</LinearLayout>

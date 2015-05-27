@@ -1,0 +1,95 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/halftransparent"
+    tools:context=".MainActivity" >
+
+    <FrameLayout
+        android:id="@+id/ll_all"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <io.vov.vitamio.widget.CenterLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <io.vov.vitamio.widget.VideoView
+                android:id="@+id/myVideoView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true" />
+        </io.vov.vitamio.widget.CenterLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_full"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/live_channel_list_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20.0dip"
+            android:paddingTop="20.0dip" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5.0dip"
+                android:orientation="horizontal"
+                android:paddingLeft="20.0dip"
+                android:paddingRight="20.0dip" >
+
+                <ImageView
+                    android:id="@id/changetype_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/changetype_left" />
+
+                <TextView
+                    android:id="@id/play_title"
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/channeltype_bg"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="28.0px" />
+
+                <ImageView
+                    android:id="@id/changetype_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/changetype_right" />
+            </LinearLayout>
+
+            <ListView
+                android:id="@id/play_list"
+                android:layout_width="fill_parent"
+                android:layout_height="0.0dip"
+                android:layout_weight="1.0"
+                android:divider="@drawable/diver"
+                android:scrollbars="none" />
+
+            <TextView
+                android:id="@id/live_channellist_layout_empty_txt"
+                android:layout_width="fill_parent"
+                android:layout_height="0.0dip"
+                android:layout_weight="1.0"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:text="暂无记录"
+                android:textSize="24.0px"
+                android:visibility="gone" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15.0dip"
+                android:src="@drawable/live_channel_list_arrow_down" />
+        </LinearLayout>
+    </FrameLayout>
+
+</RelativeLayout>

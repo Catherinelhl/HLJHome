@@ -1,0 +1,378 @@
+package com.android.userregister;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.android.net.ManagerNetwork;
+import com.android.request.BaseRequest;
+import com.hlj.HomeActivity.BeforePreActivity;
+import com.hlj.HomeActivity.R;
+import com.hlj.HomeActivity.SpectialHomeActivity;
+import com.hlj.net.GetDeviceCheckRequest;
+import com.hlj.net.GetDeviceCheckResponse;
+import com.hlj.net.GetTimeRequest;
+import com.hlj.net.HttpHomeLoadDataTask;
+import com.hlj.utils.CommonTools;
+import com.hlj.utils.DeviceCheck;
+import com.hlj.utils.FileUtils;
+import com.hlj.utils.Logger;
+import com.hlj.utils.StringTools;
+import com.hlj.view.CommonTitleView;
+import com.live.video.constans.DeviceInfo;
+import com.live.video.constans.HomeConstants;
+import com.live.video.net.callback.IUpdateData;
+
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
+import android.graphics.Typeface;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnFocusChangeListener;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+/***
+ * 
+ * 这是注册页面，只要用户输入他的手机号码就okay
+ * 
+ * @author Catherine.Brain
+ * 
+ *         注册页面牵涉到的字段就是android、code、mobile、pw
+ * 
+ * 
+ * 
+ * */
+public class UserRegisterActivity extends Activity implements
+		android.view.View.OnClickListener {
+	private Button mButton;
+	private EditText moblie_Edit;
+	public static String moblieNum;
+	private TextView error_Text;
+	String requestStr;
+	private RelativeLayout mLayout;
+	int temp_reg;
+	private UserRegisterActivity instance;
+	boolean isSuccess = false;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		setContentView(R.layout.user_register);
+		instance = this;
+
+		mButton = (Button) findViewById(R.id.dot_sent);
+		error_Text = (TextView) findViewById(R.id.text_error);
+		mButton.setOnClickListener(this);
+		moblie_Edit = (EditText) findViewById(R.id.moblie_edit);
+		moblie_Edit.setFocusable(true);
+		moblie_Edit.setFocusableInTouchMode(true);
+		moblie_Edit.setEnabled(true);
+		moblie_Edit.requestFocus();
+		mButton.setOnFocusChangeListener(new OnFocusChangeListener() {
+
+			@Override
+			public void onFocusChange(View arg0, boolean has) {
+				// TODO Auto-generated method stub
+				if (has) {
+					mButton.setTextColor(0xFFFFFFFF);
+					mButton.setTextSize(28);
+					mButton.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+
+				} else {
+					mButton.setTextColor(0xFFaeb7bc);
+					mButton.setTextSize(26);
+				}
+			}
+		});
+		moblie_Edit.setOnFocusChangeListener(new OnFocusChangeListener() {
+
+			@Override
+			public void onFocusChange(View v, boolean has) {
+				if (has) {
+					moblie_Edit.setTextColor(0xFF000000);
+
+				} else {
+					moblie_Edit.setTextColor(0xEEFFFFFF);
+
+				}
+
+			}
+		});
+		moblie_Edit.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+					int arg3) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence arg0, int arg1,
+					int arg2, int arg3) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable arg0) {
+
+			}
+		});
+
+	}
+
+	String snCode;
+
+	@Override
+	public void onClick(View arg0) {
+		snCode = moblie_Edit.getText().toString().trim();
+		if (!("").equals(snCode.toString())) {
+			regDevice1();
+
+			// new MyThread().start();
+		} else {
+			error_Text.setText("sn码的不能为空哦！请检查！");
+			error_Text.setVisibility(View.VISIBLE);
+			timer_Text();
+
+		}
+
+	}
+
+	public void dialogToShowOfFail(String str) {
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.create();
+		builder.setTitle("提示").setMessage(str)
+				.setPositiveButton("点击退出", new OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface arg0, int arg1) {
+
+						System.exit(0);
+
+					}
+
+				}).setNegativeButton("重新注册", new OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface arg0, int arg1) {
+						moblie_Edit.setText("");
+						moblie_Edit.setFocusable(true);
+						moblie_Edit.setFocusableInTouchMode(true);
+						moblie_Edit.setEnabled(true);
+						moblie_Edit.requestFocus();
+					}
+				});
+
+		builder.show();
+	}
+
+	public void dialogToShow() {
+		final ProgressDialog mProgress;
+		mProgress = ProgressDialog.show(UserRegisterActivity.this,
+				"恭喜您，设备注册成功！", "正在为您跳页面。。。。。");
+
+		new Thread() {
+			public void run() {
+				try {
+					sleep(3000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				} finally {
+					mProgress.dismiss();
+					finish();
+					Intent intent = new Intent().setClass(
+							UserRegisterActivity.this,
+							SpectialHomeActivity.class);
+					startActivity(intent);
+				}
+			}
+		}.start();
+	}
+
+	/**
+	 * 
+	 * to define a timer 's method
+	 * */
+	Timer timer;
+
+	public void timer_Text() {
+
+		timer = new Timer();
+
+		// 定义计划任务，根据参数的不同可以完成以下种类的工作：在固定时间执行某任务，在固定时间开始重复执行某任务，重复时间间隔可控，在延迟多久后执行某任务，在延迟多久后重复执行某任务，重复时间间隔可控
+		timer.schedule(new TimerTask() {
+			int i = 0;
+
+			// TimerTask 是个抽象类,实现的是Runable类
+			@Override
+			public void run() {
+
+				// 定义一个消息传过去
+				Message msg = new Message();
+				msg.what = i++;
+
+				myHandler.sendMessage(msg);
+
+			}
+
+		}, 1000, 200);
+	}
+
+	Handler myHandler = new Handler() {
+
+		public void handleMessage(Message msg) {
+			if (msg.what == 5) {
+				if (error_Text.getVisibility() == View.VISIBLE) {
+					error_Text.setVisibility(View.INVISIBLE);
+				}
+				timer.cancel();
+
+			}
+
+		}
+	};
+
+	/**
+	 * 注册（只有第一次进来才会注册，怎么知道是第一次进来呢，就是检查设备里面是否有存储注册返回的文件，而且不能为空）
+	 */
+	private void regDevice1() {
+		Log.d("================", "注册");
+		GetDeviceCheckRequest request = new GetDeviceCheckRequest(this, snCode);
+		// --------------------------------------------
+		String judgeInfo;
+		String info;
+		judgeInfo = HttpHomeLoadDataTask.code + "====>这是手动注册返回的code值"
+				+ "===>当前时间为：==》" + BeforePreActivity.getCurrentDate();
+		if (CommonTools.hasSDCard()) {
+			File file = new File(HomeConstants.deviceJudgeInfos);
+			info = "这是手动注册传送的值：====>" + request.androidId + "      "
+					+ DeviceCheck.fetch_ethmac() + "     " + request.wifiMac
+					+ "====>" + snCode + "===>当前时间为：==》"
+					+ BeforePreActivity.getCurrentDate();
+			if (file.exists()) {
+				try {
+					FileUtils.delectFile(HomeConstants.deviceJudgeInfos);
+					FileUtils.delectFile(HomeConstants.deviceSend);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			} else {
+				try {
+					FileUtils.saveData(judgeInfo,
+							HomeConstants.deviceJudgeInfos);
+					FileUtils.saveData(info, HomeConstants.deviceSend);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			// }
+		}
+		// ---------------------------------------
+		request.deviceUsersUniqueId = deviceUsersUniqueId;
+		new HttpHomeLoadDataTask(this, callback1, false, "", true)
+				.execute(request);
+	}
+
+	int userNum;
+	String deviceUsersUniqueId;
+	IUpdateData callback1 = new IUpdateData() {
+
+		@Override
+		public void updateUi(Object o) {
+			try {
+				GetDeviceCheckResponse response = new GetDeviceCheckResponse();
+				response.paseRespones(o.toString());
+
+				deviceUsersUniqueId = response.deviceData.deviceUsersUniqueId;
+				// 如果deviceUsersUniqueId长度<21,user_id值<=0
+				System.out.println("the deviceUsersUniqueId is==>"
+						+ deviceUsersUniqueId + "=====>lenth is==>"
+						+ deviceUsersUniqueId.length() + "and the usernum is"
+						+ userNum);
+				if (deviceUsersUniqueId.length() < 21 && userNum <= 0) {
+					isSuccess = false;
+					Logger.log("注册失败");
+					FileUtils.delectFile(HomeConstants.deviceUsersUniqueIdPath);
+					FileUtils.delectFile(HomeConstants.userIdPath);
+				} else {
+					isSuccess = true;
+					// Toast.makeText(
+					// instance,
+					// "the注册  register unique id is =====>"
+					// + response.deviceData.deviceUsersUniqueId,
+					// Toast.LENGTH_SHORT).show();
+					Logger.log("the注册  register unique id is =====>"
+							+ response.deviceData.deviceUsersUniqueId);
+					String user_id = response.deviceData.user_id;
+					String nick_id = response.deviceData.nick_id;
+					String session_id = response.deviceData.session_id;
+					String has_update = response.deviceData.has_update;
+					String tags = response.deviceData.tags;
+					Logger.log("注册成功" + deviceUsersUniqueId);
+					FileUtils.saveData(deviceUsersUniqueId,
+							HomeConstants.deviceUsersUniqueIdPath);
+					FileUtils.saveData(user_id, HomeConstants.userIdPath);
+					userNum = Integer.parseInt(user_id);
+				}
+
+				if (isSuccess) {
+					dialogToShow();
+				} else {
+					dialogToShowOfFail("手动注册失败！请联系经销商！");
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				try {
+					android.os.Debug
+							.dumpHprofData("/mnt/sdcard/hljhomedump.hprof");
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
+
+		@Override
+		public void handleErrorData(String info) {
+
+			dialogToShowOfFail("手动注册失败！请联系经销商！");
+			// dialogToShowOfFail(info);
+		}
+	};
+
+}

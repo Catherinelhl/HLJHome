@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_tvlive"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/main_bg" >
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@null" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginTop="8.0dip"
+        android:src="@drawable/tv_back_log" />
+
+    <LinearLayout
+        android:layout_width="200.0dip"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="100.0dip"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginTop="70.0dip"
+        android:background="@drawable/tv_live_egp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/play_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="0.0dip"
+            android:layout_marginTop="20.0dip"
+            android:gravity="center_horizontal"
+            android:text="频道列表 "
+            android:textColor="@color/white"
+            android:textSize="25.0sp" />
+
+        <ListView
+            android:id="@+id/play_list"
+            android:layout_width="300.0dip"
+            android:layout_height="500.0dip"
+            android:layout_marginTop="10.0dip"
+            android:focusableInTouchMode="true"
+            android:listSelector="#00000000" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="1000.0dip"
+        android:layout_height="600.0dip"
+        android:layout_marginLeft="230.0dip"
+        android:layout_marginTop="80.0dip"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="300.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="580.0dip"
+            android:layout_marginTop="20.0dip"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10.0dip"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:text="当前频道:"
+                android:textColor="@color/dark"
+                android:textSize="26.0dip" />
+
+            <TextView
+                android:id="@+id/tv_back_current_channel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5.0dip"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="22.0dip" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10.0dip"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:text="当前播放栏目:"
+                android:textColor="@color/dark"
+                android:textSize="26.0dip" />
+
+            <TextView
+                android:id="@+id/tv_back_current_tv"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5.0dip"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="22.0dip" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10.0dip"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:text="下一个栏目:"
+                android:textColor="@color/dark"
+                android:textSize="26.0dip" />
+
+            <TextView
+                android:id="@+id/tv_back_next_tv"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5.0dip"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="22.0dip" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="55.0dip"
+            android:src="@drawable/tv_back_device_line" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25.0dip"
+            android:layout_marginTop="5.0dip"
+            android:orientation="vertical" >
+
+            <RadioGroup
+                android:id="@+id/tv_back_weekdays"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25.0dip"
+                android:orientation="horizontal"
+                android:visibility="gone" >
+
+                <RadioButton
+                    android:id="@+id/tv_back_rd_Sunday"
+                    android:layout_width="117.0dip"
+                    android:layout_height="71.0dip"
+                    android:background="@drawable/tv_back_week"
+                    android:button="@null"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="15.0dip"
+                    android:text=""
+                    android:textColor="@color/detail_point"
+                    android:textSize="16.0dip" />
+
+                <RadioButton
+                    android:id="@+id/tv_back_rd_Monday"
+                    android:layout_width="117.0dip"
+                    android:layout_height="71.0dip"
+                    android:layout_marginLeft="15.0dip"
+                    android:background="@drawable/tv_back_week"
+                    android:button="@null"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="15.0dip"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="16.0dip" />
+
+                <RadioButton
+                    android:id="@+id/tv_back_rd_Tuesday"
+                    android:layout_width="117.0dip"
+                    android:layout_height="71.0dip"
+                    android:layout_marginLeft="15.0dip"
+                    android:background="@drawable/tv_back_week"
+                    android:button="@null"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="15.0dip"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="16.0dip" />
+
+                <RadioButton
+                    android:id="@+id/tv_back_rd_Wednesday"
+                    android:layout_width="117.0dip"
+                    android:layout_height="71.0dip"
+                    android:layout_marginLeft="15.0dip"
+                    android:background="@drawable/tv_back_week"
+                    android:button="@null"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="15.0dip"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="16.0dip" />
+
+                <RadioButton
+                    android:id="@+id/tv_back_rd_Thursday"
+                    android:layout_width="117.0dip"
+                    android:layout_height="71.0dip"
+                    android:layout_marginLeft="15.0dip"
+                    android:background="@drawable/tv_back_week"
+                    android:button="@null"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="15.0dip"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="16.0dip" />
+
+                <RadioButton
+                    android:id="@+id/tv_back_rd_Friday"
+                    android:layout_width="117.0dip"
+                    android:layout_height="71.0dip"
+                    android:layout_marginLeft="15.0dip"
+                    android:background="@drawable/tv_back_week"
+                    android:button="@null"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="15.0dip"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="16.0dip" />
+
+                <RadioButton
+                    android:id="@+id/tv_back_rd_Saturday"
+                    android:layout_width="117.0dip"
+                    android:layout_height="71.0dip"
+                    android:layout_marginLeft="15.0dip"
+                    android:background="@drawable/tv_back_week"
+                    android:button="@null"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="15.0dip"
+                    android:text=""
+                    android:textColor="@color/detail_point"
+                    android:textSize="16.0dip" />
+            </RadioGroup>
+
+            <ListView
+                android:id="@+id/tv_back_videos"
+                android:layout_width="fill_parent"
+                android:layout_height="200.0dip"
+                android:background="@drawable/tv_back_epg_bg"
+                android:focusableInTouchMode="true"
+                android:nextFocusUp="@id/tv_back_weekdays" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/back_video_blck"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@color/black"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:layout_width="515.0dip"
+        android:layout_height="302.0dip"
+        android:layout_marginLeft="250.0dip"
+        android:layout_marginTop="80.0dip"
+        android:background="@drawable/tv_back_tv" />
+
+    <com.hj.widget.HljVideoView
+        android:id="@+id/myVideoView"
+        android:layout_width="500.0dip"
+        android:layout_height="285.0dip"
+        android:layout_marginLeft="258.0dip"
+        android:layout_marginTop="85.0dip" />
+
+    <com.hj.widget.HljVideoView
+        android:id="@+id/fullVideoView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
+
+</FrameLayout>

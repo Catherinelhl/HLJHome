@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:background="@drawable/video_details_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:background="@drawable/lixian_userinfo_bg" android:paddingLeft="20.0dip" android:paddingTop="30.0dip" android:paddingRight="20.0dip" android:paddingBottom="20.0dip" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+        <FrameLayout android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+            <LinearLayout android:orientation="vertical" android:id="@id/lixian_userinfo_layout" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                <TextView android:textSize="30.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="50.0dip" android:layout_marginBottom="20.0dip" android:text="" />
+                <TextView android:textSize="20.0dip" android:textColor="@color/white" android:id="@id/lixian_userinfo_nickname" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="10.0dip" />
+                <TextView android:textSize="20.0dip" android:textColor="@color/white" android:id="@id/lixian_userinfo_usrname" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="10.0dip" />
+                <TextView android:textSize="20.0dip" android:textColor="@color/white" android:id="@id/lixian_userinfo_level" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="10.0dip" />
+                <TextView android:textSize="20.0dip" android:textColor="@color/white" android:id="@id/lixian_userinfo_expiredate" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout android:orientation="vertical" android:id="@id/lixian_login_layout" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                <TextView android:textSize="26.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="50.0dip" android:text="白金账户名" />
+                <EditText android:textSize="24.0dip" android:id="@id/lixian_login_username_autotxt" android:layout_width="fill_parent" android:layout_height="wrap_content" android:hint="输入用户名" android:inputType="textAutoComplete" />
+                <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="密码" />
+                <EditText android:textSize="24.0dip" android:id="@id/lixian_login_password_autotxt" android:layout_width="fill_parent" android:layout_height="wrap_content" android:hint="输入密码" android:inputType="text" />
+                <LinearLayout android:orientation="vertical" android:id="@id/lixian_login_proving_layout" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="验证码" />
+                    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                        <ImageButton android:layout_gravity="center_vertical" android:id="@id/lixian_login_proving_img" android:layout_width="100.0dip" android:layout_height="40.0dip" android:scaleType="fitXY" />
+                        <EditText android:textSize="24.0dip" android:id="@id/lixian_login_proving_et" android:layout_width="fill_parent" android:layout_height="wrap_content" android:hint="点击图片可刷新" android:inputType="text" />
+                    </LinearLayout>
+                </LinearLayout>
+                <Button android:id="@id/lixian_getuserinfo_retry_btn" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="重新获取用户信息" />
+            </LinearLayout>
+        </FrameLayout>
+        <Button android:textSize="24.0sp" android:textColor="@*android:color/black" android:gravity="center" android:id="@id/lixian_login_logout_btn" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="60.0dip" android:text="登陆" />
+        <TextView android:textSize="18.0sp" android:textColor="@*android:color/darker_gray" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="10.0dip" android:text="此次登陆为模拟浏览器登陆，VST服务器不会采集你的账户信息，请放心使用。" />
+        <TextView android:textSize="18.0sp" android:textColor="@*android:color/darker_gray" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="只有白金账户才能使用云播放，普通账户不支持，VST账户不能在此登陆。" />
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:paddingLeft="30.0dip" android:paddingTop="30.0dip" android:paddingRight="30.0dip" android:paddingBottom="30.0dip" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="2.8">
+        <TextView android:textSize="30.0sp" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="20.0dip" android:text="我的离线" />
+        <TextView android:textSize="22.0sp" android:textColor="@*android:color/white" android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="20.0dip" android:text="云播放列表" android:singleLine="true" />
+        <ImageView android:background="@drawable/line760" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_marginBottom="10.0dip" />
+        <ExpandableListView android:id="@id/lixian_video_list" android:layout_width="fill_parent" android:layout_height="fill_parent" android:divider="@drawable/line760" />
+        <Button android:layout_gravity="center" android:id="@id/lixian_getvideolist_retry_btn" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="重新获取列表" />
+        <TextView android:gravity="center" android:id="@id/lixian_videolist_empty_txt" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="暂无云播记录列表" />
+    </LinearLayout>
+</LinearLayout>

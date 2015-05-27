@@ -1,0 +1,56 @@
+package com.hlj.net;
+
+import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import com.hlj.utils.JsonTools;
+import com.hlj.view.VideoInfo;
+
+/**
+ * 
+ * @author office
+ * 
+ */
+public class GetSubjectGradeResponse extends BaseResponse {
+
+	public ArrayList<VideoInfo> list = new ArrayList<VideoInfo>();
+
+	public int count;
+
+	@Override
+	public void paseRespones(String js) {
+
+		try {
+			JSONObject json = new JSONObject(js);
+
+			count = json.getInt("count");
+
+			JSONArray array = json.getJSONArray("items");
+			for (int i = 0; i < array.length(); i++) {
+				JSONObject obj = (JSONObject) array.get(i);
+				VideoInfo info = new VideoInfo();
+				info.contentId = JsonTools.getString(obj, "contentId");
+
+				info.title = JsonTools.getString(obj, "title");
+				info.imageUrl = JsonTools.getString(obj, "images");
+				info.price = JsonTools.getString(obj, "price");
+
+				// 学习类增加的
+				info.lessonid = JsonTools.getString(obj, "lessionid");
+				info.catId = JsonTools.getInt(obj, "catId");
+				info.grade = JsonTools.getString(obj, "grade");
+				info.subject = JsonTools.getString(obj, "subject");
+				info.intro = JsonTools.getString(obj, "intro");
+				info.childLock = JsonTools.getString(obj, "childLock");
+				
+				list.add(info);
+			}
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+	}
+}

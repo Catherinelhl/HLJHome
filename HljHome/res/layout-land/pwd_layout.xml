@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/launcher52_bg" >
+
+    <LinearLayout
+        android:layout_width="400.0dip"
+        android:layout_height="230.0dip"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40.0dip"
+            android:layout_marginTop="60.0dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40.0dip"
+                android:layout_alignParentLeft="true"
+                android:text="密   码:"
+                android:textColor="@color/white"
+                android:textSize="24.0dip" android:layout_marginLeft="20.0dip"/>
+
+            <EditText
+                android:id="@id/pwd"
+                android:layout_width="270.0dip"
+                android:layout_height="40.0dip"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/edittext_bg_selector"
+                android:ellipsize="start"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="24.0dip"
+                android:textStyle="bold" android:layout_marginRight="20.0dip">
+
+                <requestFocus />
+            </EditText>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35.0dip" >
+
+            <Button
+                android:id="@id/confirm"
+                android:layout_width="130.0dip"
+                android:layout_height="50.0dip"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/video_details_btn_selector"
+                android:text="确定"
+                android:textColor="@color/detail_point"
+                android:textSize="24.0dip" android:layout_marginLeft="35.0dip"/>
+
+            <Button
+                android:id="@id/cancel"
+                android:layout_width="130.0dip"
+                android:layout_height="50.0dip"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/video_details_btn_selector"
+                android:text="取消"
+                android:textColor="@color/detail_point"
+                android:textSize="24.0dip" android:layout_marginRight="35.0dip"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

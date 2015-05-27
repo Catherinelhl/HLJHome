@@ -1,0 +1,288 @@
+package com.android.userregister;
+
+import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import com.android.net.ManagerNetwork;
+import com.android.request.BaseRequest;
+import com.hlj.HomeActivity.R;
+import com.hlj.utils.DeviceCheck;
+
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Typeface;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnFocusChangeListener;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+/***
+ * 
+ * 这是注册页面，只要用户输入他的手机号码就okay
+ * 
+ * @author Catherine.Brain
+ * 
+ *         注册页面牵涉到的字段就是android、code、mobile、pw
+ * 
+ * 
+ * 
+ * */
+public class UserRegisterActivity extends Activity implements OnClickListener {
+	private Button mButton;
+	private EditText moblie_Edit;
+	public static String moblieNum;
+	private TextView error_Text;
+	String requestStr;
+	private RelativeLayout mLayout;
+	int temp_reg;
+	private UserRegisterActivity instance;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		setContentView(R.layout.user_register);
+		instance = this;
+		Intent intent = getIntent();
+		temp_reg = intent.getIntExtra("reg", 0);
+
+		mLayout = (RelativeLayout) findViewById(R.id.userregister_bg);
+		// mLayout.setBackground(BaseActivity.bg_Bd);
+		mButton = (Button) findViewById(R.id.dot_sent);
+		error_Text = (TextView) findViewById(R.id.text_error);
+		mButton.setOnClickListener(this);
+		moblie_Edit = (EditText) findViewById(R.id.moblie_edit);
+		mButton.setOnFocusChangeListener(new OnFocusChangeListener() {
+
+			@Override
+			public void onFocusChange(View arg0, boolean has) {
+				// TODO Auto-generated method stub
+				if (has) {
+					mButton.setTextColor(0xFFFFFFFF);
+					mButton.setTextSize(28);
+					mButton.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+
+				} else {
+					mButton.setTextColor(0xFFaeb7bc);
+					mButton.setTextSize(26);
+				}
+			}
+		});
+		if (temp_reg == 1) {
+			moblie_Edit.requestFocus();
+			moblie_Edit.setFocusable(true);
+			moblie_Edit.setFocusableInTouchMode(true);
+			moblie_Edit.setEnabled(true);
+			error_Text.setText("请确认手机号码是否正确，然后点击发送！");
+
+			error_Text.setVisibility(View.VISIBLE);
+
+			timer_Text();
+		}
+		moblie_Edit.setOnFocusChangeListener(new OnFocusChangeListener() {
+
+			@Override
+			public void onFocusChange(View v, boolean has) {
+				if (has) {
+					moblie_Edit.setTextColor(0xFF000000);
+
+				} else {
+					moblie_Edit.setTextColor(0xEEEEEEEE);
+
+				}
+
+			}
+		});
+
+		moblie_Edit.addTextChangedListener(new TextWatcher() {
+			int con = 0;
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				con += 1;
+				System.out.println("onTextChanged===>"
+						+ "and the count is ====>" + count
+						+ "and the moblie text is====>"
+						+ moblie_Edit.getText().toString().trim()
+						+ "and the start is ===>" + start
+						+ "and the before is===>" + before);
+				if (con == 1) {
+
+					if (moblie_Edit.getText().toString().trim().equals("1")) {
+
+					} else {
+						error_Text.setText("对不起，没有以“"
+								+ moblie_Edit.getText().toString()
+								+ "”开头的手机号码!");
+
+						error_Text.setVisibility(View.VISIBLE);
+
+						timer_Text();
+						moblie_Edit.setText("");
+						moblie_Edit.setFocusable(true);
+						moblie_Edit.setFocusableInTouchMode(true);
+						moblie_Edit.setEnabled(true);
+						moblie_Edit.requestFocus();
+						con = 0;
+					}
+				}
+
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable edit) {
+				if (moblie_Edit.getText().toString().trim().length() == 11) {
+					error_Text.setText("您的输入已完成，请点击发送验证码！");
+					error_Text.setVisibility(View.VISIBLE);
+					mButton.setFocusable(true);
+					mButton.setFocusableInTouchMode(true);
+					mButton.setEnabled(true);
+					mButton.requestFocus();
+					InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+					imm.hideSoftInputFromWindow(moblie_Edit.getWindowToken(), 0);
+				}
+
+			}
+		});
+
+	}
+
+	@Override
+	public void onClick(View arg0) {
+		moblieNum = moblie_Edit.getText().toString().trim();
+		if (moblieNum.length() < 11) {
+			error_Text.setVisibility(View.VISIBLE);
+			moblie_Edit.setText("");
+			moblie_Edit.setFocusable(true);
+			moblie_Edit.setFocusableInTouchMode(true);
+			moblie_Edit.setEnabled(true);
+			moblie_Edit.requestFocus();
+			timer_Text();
+
+		} else {
+			new MyThread().start();
+			// initData();
+
+		}
+
+	}
+
+	/**
+	 * 
+	 * to define a timer 's method
+	 * */
+	Timer timer;
+
+	public void timer_Text() {
+
+		timer = new Timer();
+
+		// 定义计划任务，根据参数的不同可以完成以下种类的工作：在固定时间执行某任务，在固定时间开始重复执行某任务，重复时间间隔可控，在延迟多久后执行某任务，在延迟多久后重复执行某任务，重复时间间隔可控
+		timer.schedule(new TimerTask() {
+			int i = 0;
+
+			// TimerTask 是个抽象类,实现的是Runable类
+			@Override
+			public void run() {
+
+				// 定义一个消息传过去
+				Message msg = new Message();
+				msg.what = i++;
+
+				myHandler.sendMessage(msg);
+
+			}
+
+		}, 1000, 200);
+	}
+
+	public static int STATE = 0x1100021;
+	public static String code_Result;
+	BaseRequest bRequest = new BaseRequest();
+
+	class MyThread extends Thread {
+		@Override
+		public void run() {
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("android", DeviceCheck.getAndroidId(instance));
+			map.put("mobile", moblieNum);
+			requestStr = ManagerNetwork.responseFromServiceByPost(
+					"http://test.cdltv.com/primary/reg.php", map);
+			code_Result = bRequest.ToChangeJson(requestStr);
+			// try {
+			// JSONObject jsonObject = new JSONObject(requestStr);
+			// // result = jsonObject.keys().next().toString();
+			// String Result = jsonObject.getString("RESULT");
+			// byte[] b = Base64.decode(Result);
+			//
+			// try {
+			// String result_Code = new String(b, "utf-8");
+			// JSONObject json_code = new JSONObject(result_Code);
+			// // result = jsonObject.keys().next().toString();
+			// code_Result = json_code.getString("code");
+			// System.out.println("this requeststr is ===========>"
+			// + requestStr + "the decryptstr is=======>"
+			// + code_Result);
+			// } catch (UnsupportedEncodingException e) {
+			// // TODO Auto-generated catch block
+			// e.printStackTrace();
+			// }
+			//
+			// } catch (JSONException e) {
+			// // TODO Auto-generated catch block
+			// e.printStackTrace();
+			// }
+			System.out.println("this requeststr is ===========>" + requestStr
+					+ "the decryptstr is=======>" + code_Result);
+
+			Message msg = new Message();
+
+			msg.what = STATE;
+
+			myHandler.sendMessage(msg);
+
+		}
+	}
+
+	Handler myHandler = new Handler() {
+
+		public void handleMessage(Message msg) {
+			if (msg.what == 5) {
+				if (error_Text.getVisibility() == View.VISIBLE) {
+					error_Text.setVisibility(View.INVISIBLE);
+				}
+				timer.cancel();
+
+			} else if (msg.what == STATE) {
+				finish();
+
+			}
+
+		}
+	};
+
+}

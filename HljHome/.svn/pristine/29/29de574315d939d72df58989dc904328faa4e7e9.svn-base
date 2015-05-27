@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="75dip"
+    android:orientation="vertical"
+    android:paddingBottom="0.0dip"
+    android:paddingLeft="20.0dip"
+    android:paddingRight="20.0dip"
+    android:paddingTop="0.0dip" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10.0dip" >
+
+        <ImageView
+            android:id="@id/top_net_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="30.0dip"
+            android:src="@color/transparent" />
+
+        <TextView
+            android:id="@id/type_details_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/top_net_type"
+            android:layout_gravity="bottom"
+            android:layout_toRightOf="@id/top_net_type"
+            android:text="电视回看"
+            android:textColor="#ffb2b2b2"
+            android:textSize="30.0dip"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@id/type_details_type_iv"
+            android:layout_width="2.0dip"
+            android:layout_height="35.0dip"
+            android:layout_alignBottom="@id/top_net_type"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="5dip"
+            android:layout_marginLeft="5.0dip"
+            android:layout_marginRight="5.0dip"
+            android:layout_toRightOf="@id/type_details_type"
+            android:background="#ffb2b2b2"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@id/type_details_sum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/top_net_type"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="5dip"
+            android:layout_marginLeft="10.0dip"
+            android:layout_toRightOf="@id/type_details_type_iv"
+            android:text="@string/type_details_sum"
+            android:textColor="#ffb2b2b2"
+            android:textSize="18.0dip"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/ll_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@id/top_weather_log1"
+                android:layout_width="40.0dip"
+                android:layout_height="40.0dip"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginLeft="5.0dip"
+                android:layout_marginRight="5.0dip"
+                android:layout_marginTop="0.0dip"
+                android:layout_toLeftOf="@id/top_time_info"
+                android:scaleType="fitCenter"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@id/top_weather_log2"
+                android:layout_width="40.0dip"
+                android:layout_height="40.0dip"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginLeft="50.0dip"
+                android:layout_marginRight="5.0dip"
+                android:layout_marginTop="0.0dip"
+                android:layout_toLeftOf="@id/top_weather_log1"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_weather_clear_day_l"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@id/top_time_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginLeft="5.0dip"
+                android:layout_marginRight="5.0dip"
+                android:layout_toLeftOf="@id/top_grade"
+                android:gravity="center_horizontal"
+                android:singleLine="true"
+                android:text="12:00"
+                android:textColor="@color/white"
+                android:textSize="25.0dip" />
+
+            <Button
+                android:id="@id/top_grade"
+                android:layout_width="54.0dip"
+                android:layout_height="40.0dip"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginLeft="5.0dip"
+                android:layout_marginRight="10dip"
+                android:background="@drawable/home_grade_up"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:paddingRight="20dip"
+                android:paddingTop="5dip"
+                android:scaleType="fitCenter"
+                android:text="1"
+                android:textColor="#100964"
+                android:textSize="20sp"
+                android:visibility="invisible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/type_details_menuHint_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical|right"
+            android:layout_toLeftOf="@id/ll_right"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <TextView
+                android:id="@id/type_details_fliter_type"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:text=""
+                android:textColor="#ff999999"
+                android:textSize="18.0dip" />
+
+            <ImageView
+                android:id="@id/detail_menu_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:src="@drawable/menu_key" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5.0dip"
+                android:text="@string/type_details_menu_hint"
+                android:textColor="#ff999999"
+                android:textSize="18.0dip" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

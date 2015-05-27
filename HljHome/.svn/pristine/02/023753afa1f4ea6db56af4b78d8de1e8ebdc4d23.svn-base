@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10.0dip" >
+
+    <ProgressBar
+        android:id="@+id/loading_img"
+        style="@android:style/Widget.ProgressBar.Large.Inverse"
+        android:layout_width="120dip"
+        android:layout_height="120dip"
+        android:indeterminateDrawable="@anim/image_progress" />
+
+    <TextView
+        android:id="@id/loading_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="片刻之后，精彩呈现……"
+        android:textColor="@color/white"
+        android:textSize="30.0dip"
+        android:textStyle="bold" />
+
+</LinearLayout>

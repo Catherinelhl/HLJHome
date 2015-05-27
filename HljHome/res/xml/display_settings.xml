@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
+    android:title="播放者首选项" >
+
+    <com.hlj.settings.TVBrightnessPreference
+        android:dialogTitle="@string/brightness"
+        android:key="brightness"
+        android:title="@string/brightness" />
+
+    <com.hlj.settings.ContrastPreference
+        android:dialogTitle="@string/contrast_title"
+        android:key="constrat"
+        android:title="@string/contrast_title" />
+
+    <com.hlj.settings.SaturationPreference
+        android:dialogTitle="@string/saturation_title"
+        android:key="saturation"
+        android:title="@string/saturation_title" />
+
+    <com.hlj.settings.DisplayTrimmingPreference
+        android:key="tv_screen_trimming"
+        android:title="@string/tv_screen_trimming_title" />
+
+    <com.hlj.settings.MiniPrefrence
+        android:key="tv_mini"
+        android:title="@string/tv_screen_mini" />
+
+</PreferenceScreen>

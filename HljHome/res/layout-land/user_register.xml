@@ -1,0 +1,90 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/userregister_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/before_bg" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
+        android:background="#00000000" >
+
+        <ImageView
+            android:id="@+id/imge_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dip"
+            android:background="@drawable/btn_selector" />
+
+        <TextView
+            android:id="@+id/layout_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/imge_back"
+            android:text="用户注册"
+            android:textColor="#bbb"
+            android:textSize="25dip" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="70dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/text_moblie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请输入sn码:"
+                android:textColor="#fff"
+                android:textSize="28dip"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/moblie_edit"
+                android:layout_width="474dip"
+                android:layout_height="62dip"
+                android:layout_marginLeft="20dip"
+                android:background="@drawable/shape"
+                android:paddingLeft="10dip"
+                android:textColor="#000"
+                android:textSize="28dip" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="160dip"
+            android:layout_marginTop="10dip"
+            android:text="查看盒子底部有sn码"
+            android:textColor="#f00"
+            android:textSize="24dip"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/dot_sent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="430dip"
+            
+            android:layout_marginTop="20dip"
+            android:background="@drawable/before_btn_selector"
+            android:paddingLeft="20dip"
+            android:paddingRight="20dip"
+            android:text="发送"
+            android:textColor="#000"
+            android:textSize="26dip" >
+        </Button>
+    </LinearLayout>
+
+</RelativeLayout>

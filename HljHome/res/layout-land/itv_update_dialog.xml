@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@id/update_dialog_title"
+        android:layout_width="500.0dip"
+        android:layout_height="50dip"
+        android:layout_marginBottom="5.0dip"
+        android:background="@drawable/launcher52_bg"
+        android:gravity="center_vertical"
+        android:paddingLeft="10.0dip"
+        android:text=" 版本升级"
+        android:textColor="@color/white"
+        android:textSize="30.0dip" />
+
+    <LinearLayout
+        android:id="@id/update_dialog_proline"
+        android:layout_width="500.0dip"
+        android:layout_height="150.0dip"
+        android:background="@drawable/menu_bg_n"
+        android:gravity="center_horizontal"
+        android:visibility="gone" >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5.0dip" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5.0dip"
+            android:text="正在检测，请稍候……"
+            android:textColor="@color/detail_point"
+            android:textSize="24.0dip" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@id/update_dialog_msgline"
+        android:layout_width="500.0dip"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5.0dip"
+        android:background="@drawable/dia_msg_bg"
+        android:visibility="visible" >
+
+        <TextView
+            android:id="@id/update_dialog_msg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5.0dip"
+            android:textColor="@color/detail_point"
+            android:textSize="24.0dip" />
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@id/update_dialog_btnline"
+        android:layout_width="500.0dip"
+        android:layout_height="wrap_content"
+        android:padding="5dip"
+        android:visibility="visible" >
+
+        <Button
+            android:id="@id/update_dialog_comfire"
+            android:layout_width="0.0dip"
+            android:layout_height="45.0dip"
+            android:layout_weight="1.0"
+            android:background="@drawable/vod_top_next_s"
+            android:text="现在升级"
+            android:textColor="@color/white"
+            android:textSize="26.0dip" />
+
+        <Button
+            android:id="@id/update_dialog_cancle"
+            android:layout_width="0.0dip"
+            android:layout_height="45.0dip"
+            android:layout_marginLeft="15.0dip"
+            android:layout_weight="1.0"
+            android:background="@drawable/vod_top_next_s"
+            android:text="下次升级"
+            android:textColor="@color/white"
+            android:textSize="26.0dip" />
+
+        <Button
+            android:id="@id/update_dialog_forgive"
+            android:layout_width="0.0dip"
+            android:layout_height="45.0dip"
+            android:layout_marginLeft="15.0dip"
+            android:layout_weight="1.0"
+            android:background="@drawable/vod_top_next_s"
+            android:visibility="gone"
+            android:text="忽略此版"
+            android:textColor="@color/white"
+            android:textSize="26.0dip" />
+    </LinearLayout>
+
+</LinearLayout>
