@@ -1,0 +1,578 @@
+package com.hlj.HomeActivity;
+
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+
+import org.apache.http.cookie.Cookie;
+
+import com.hj.widget.CommonToast;
+import com.hj.widget.VitaVideoView;
+import com.hj.widget.VodCtrBot;
+import com.hlj.adapter.VideoListAdapter;
+import com.hlj.net.HttpHomeLoadDataTask;
+import com.hlj.utils.CommonTools;
+import com.hlj.utils.Logger;
+import com.hlj.utils.PrefrenceHandler;
+import com.hlj.utils.StringTools;
+import com.hlj.utils.StringUtils;
+import com.hlj.utils.SwissArmyKnife;
+import com.hlj.utils.TVOffAnimation;
+import com.hlj.utils.TimeMannager;
+import com.hlj.view.CustomProgressDialog;
+import com.hlj.view.PlayerMenuControl;
+import com.hlj.widget.MediaController;
+import com.hlj.widget.VideoView;
+import com.hlj.widget.VodCtrTop;
+import com.live.video.constans.CataInfo;
+import com.live.video.constans.ChannelInfo;
+import com.live.video.constans.EpgInfo;
+import com.live.video.constans.TVInfo;
+import com.live.video.db.DBHelper;
+import com.live.video.db.DBOperator;
+import com.live.video.net.AddPlayInfoRequest;
+import com.live.video.net.HttpLoadDataTask;
+import com.live.video.net.callback.ICallBackRequest;
+import com.live.video.net.callback.IHomeCallBackRequest;
+import com.live.video.net.callback.IUpdateData;
+import com.live.video.network.GetBaseIpTask;
+import com.live.video.network.GetEpgUrlTask;
+import com.live.video.network.GetRedicitIpTask;
+import com.live.video.network.ICallBack;
+import com.live.video.network.ICallBackResult;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
+import android.media.MediaPlayer.OnErrorListener;
+import android.media.MediaPlayer.OnPreparedListener;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.os.MessageQueue.IdleHandler;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.WindowManager;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.RelativeLayout.LayoutParams;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.TextView;
+import android.widget.Toast;
+
+/**
+ * 播放主界面(电影)
+ * 
+ * @author huangyuchao
+ * 
+ */
+public class VideoPlayActivity extends Activity {
+
+	VideoView videoView;
+	// 播放路径
+	String url = "";
+
+	MediaController mMediaController;
+
+	VideoPlayActivity instance;
+
+	TextView tvTitle;
+	String title;
+	String numText;
+
+	CommonToast toast;
+
+	String contentId, videoId, grade, subject, versions, videoSourceName;
+
+	int resourceId;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.video_play_main);
+
+		instance = this;
+
+		toast = new CommonToast(this);
+
+		tvTitle = (TextView) findViewById(R.id.title);
+
+		videoView = (VideoView) findViewById(R.id.myVideoView);
+		videoView.setOnErrorListener(errorListener);
+		videoView.setOnCompletionListener(new OnCompletionListener() {
+
+			@Override
+			public void onCompletion(MediaPlayer arg0) {
+				finish();
+			}
+		});
+
+		contentId = this.getIntent().getStringExtra("contentId");
+		videoId = this.getIntent().getStringExtra("videoId");
+		grade = this.getIntent().getStringExtra("grade");
+		subject = this.getIntent().getStringExtra("subject");
+		versions = this.getIntent().getStringExtra("versions");
+		videoSourceName = this.getIntent().getStringExtra("videoSourceName");
+
+		resourceId = StringUtils.sourceStrToResourceID(videoSourceName);
+
+		url = this.getIntent().getStringExtra("url");
+		// url = "http://file.cdltv.com/wfile/luje/d1x213h2d3r2.mp4";
+		// url = "http://file.cdltv.com/wfile/y2hk/d103t162x1x2.mp4";
+
+		// url="http://v6.tongzhuo100.com/files/junior/seven/1AMA10CAKD.mp4?Cookie:fastweb_title=fastwebtongzhuo100";
+
+		title = this.getIntent().getStringExtra("title");
+		numText = this.getIntent().getStringExtra("numText");
+		if (StringTools.isNullOrEmpty(numText)) {
+			tvTitle.setText(title);
+		} else {
+			tvTitle.setText(title + "(" + numText + ")");
+		}
+
+		// url="http://file.cdltv.com/wfile/qxfh/d1h103d35232.mp4";
+
+		// url="http://metal.video.qiyi.com/20131014/bb73f5cc8e6d6b97dec74375c9dc6122.m3u8";
+
+		// String
+		// url="http://202.108.17.129/v.cctv.com/flash/live_back/nettv_cctv1/cctv1-2013-12-10-00-001.mp4";
+
+		addPlayInfos();
+
+		setDataSource(url);
+
+		initControlView();
+		initOperatHintPop();
+
+		// 全屏之后设置进度条
+		// setMediaPlayer();
+
+		Looper.myQueue().addIdleHandler(new IdleHandler() {
+
+			@Override
+			public boolean queueIdle() {
+				if (ctrTop != null && videoView.isPlaying()) {
+					showCtrTop();
+				}
+				return false;
+			}
+		});
+	}
+
+	private void showCtrTop() {
+		ctrTop.showAtLocation(videoView, Gravity.TOP, 0, 0);
+		ctrTop.setSourceTag(resourceId);
+
+		if (StringTools.isNullOrEmpty(numText)) {
+			ctrTop.setVideoName(title);
+		} else {
+			ctrTop.setVideoName(title + "(" + numText + ")");
+		}
+	}
+
+	VodCtrTop ctrTop;
+	VodCtrBot ctrBot;
+
+	private PopupWindow hintPop;
+	private ImageView hintPopImg;
+
+	private void initControlView() {
+
+		ctrBot = new VodCtrBot(this, videoView, new Handler() {
+
+		});
+
+		ctrTop = new VodCtrTop(this, new Handler() {
+			@Override
+			public void handleMessage(Message msg) {
+
+				super.handleMessage(msg);
+			}
+
+		});
+
+	}
+
+	private void initOperatHintPop() {
+		hintPop = new PopupWindow();
+		hintPopImg = new ImageView(this);
+		hintPop.setWindowLayoutMode(
+				android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+				android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
+		hintPop.setBackgroundDrawable(new BitmapDrawable());
+		WindowManager.LayoutParams localLayoutParams = new WindowManager.LayoutParams(
+				android.view.ViewGroup.LayoutParams.WRAP_CONTENT,
+				android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
+		this.hintPopImg.setLayoutParams(localLayoutParams);
+		this.hintPop.setContentView(this.hintPopImg);
+	}
+
+	private void setMediaPlayer() {
+		// 全屏之后设置进度条
+
+		mMediaController = new MediaController(this);
+		videoView.setMediaController(mMediaController);
+		mMediaController.show();
+	}
+
+	private void addPlayInfos() {
+		AddPlayInfoRequest request = new AddPlayInfoRequest(
+				VideoPlayActivity.this);
+		request.contentId = contentId;
+
+		if (StringTools.isNullOrEmpty(videoId)) {
+			request.videoId = contentId;
+		} else {
+			request.videoId = videoId;
+		}
+
+		request.grade = grade;
+		request.subjectId = subject;
+		request.versionId = versions;
+
+		new HttpHomeLoadDataTask(this, addPlayCallBack, false, "", false)
+				.execute(request);
+	}
+
+	IUpdateData addPlayCallBack = new IUpdateData() {
+
+		@Override
+		public void updateUi(Object o) {
+			Logger.log(o.toString());
+
+		}
+
+		@Override
+		public void handleErrorData(String info) {
+			// TODO Auto-generated method stub
+
+		}
+
+	};
+
+	@Override
+	protected void onResume() {
+		// setDataSource(url, title);
+		super.onResume();
+
+		// getCookies();
+	}
+
+	/**
+	 * 获取cookie
+	 */
+	private void getCookies() {
+		// "http://ipad.tongzhuo100.com/html/18195/"
+		new HttpLoadDataTask(getApplicationContext(), updateData, false)
+				.execute(new ICallBackRequest[] { null });
+	}
+
+	IUpdateData updateData = new IUpdateData() {
+
+		@Override
+		public void updateUi(Object o) {
+			
+
+			CommonTools.getCookie(getApplicationContext());
+		}
+
+		@Override
+		public void handleErrorData(String info) {
+			// TODO Auto-generated method stub
+
+		}
+	};
+
+	public WindowManager windowManager;
+	private Handler handler;
+	private OverlayThread overlayThread;
+
+	private LinearLayout overlay_ll;
+	public TextView overlay;
+
+	// private LinearLayout overlay_bottom;
+	// public TextView tv_bottom;
+
+	private Handler mHandler = new Handler() {
+
+		public void handleMessage(Message msg) {
+			if (msg.what == 0) {
+
+			}
+		};
+	};
+
+	public void initOverlay() {
+		handler = new Handler();
+		overlayThread = new OverlayThread();
+		final LayoutInflater inflater = LayoutInflater.from(instance);
+		overlay_ll = (LinearLayout) inflater.inflate(R.layout.overlay, null);
+		overlay = (TextView) overlay_ll.findViewById(R.id.tv_center);
+
+		// overlay_bottom = (LinearLayout)
+		// inflater.inflate(R.layout.overlay_bottom, null);
+		// tv_bottom = (TextView) overlay_bottom.findViewById(R.id.tv_center);
+
+		final WindowManager.LayoutParams lp = new WindowManager.LayoutParams(
+				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,
+				WindowManager.LayoutParams.TYPE_APPLICATION,
+				WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+						| WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+				PixelFormat.TRANSLUCENT);
+		windowManager = (WindowManager) instance
+				.getSystemService(Context.WINDOW_SERVICE);
+		windowManager.addView(overlay_ll, lp);
+		// windowManager.addView(overlay_bottom, lp);
+	}
+
+	/**
+	 * 设置overlay不可见
+	 * 
+	 * 
+	 */
+	class OverlayThread implements Runnable {
+
+		@Override
+		public void run() {
+			overlay_ll.setVisibility(View.GONE);
+			// overlay_bottom.setVisibility(View.GONE);
+		}
+	}
+
+	ArrayList<TVInfo> titleList = new ArrayList<TVInfo>();
+
+	public void setDataSource(String url) {
+		Log.e(CommonTools.TAG, "url=" + url);
+
+		playVideo(url);
+
+	}
+
+	/**
+	 * 获取屏幕的宽和高
+	 */
+	private void getScreenSize() {
+		DisplayMetrics dm = new DisplayMetrics();
+		this.getWindowManager().getDefaultDisplay().getMetrics(dm);
+		VitaVideoView.mVideoWidth = dm.widthPixels;
+		VitaVideoView.mVideoHeight = dm.heightPixels;
+	}
+
+	public void playVideo(String url) {
+		// 延迟一秒后执行，让overlay为不可见
+		Log.e(CommonTools.TAG, "new url=" + url);
+		// Uri uri = Uri.parse(url);
+
+		Message msg = new Message();
+		msg.what = 0;
+		// 发送一个隐藏的消息
+		mHandler.sendMessageDelayed(msg, 5 * 1000);
+
+		videoView.setVideoPath(url);
+
+		// 展示一个进度
+		final CustomProgressDialog dialog = new CustomProgressDialog(instance);
+		if (!dialog.isShowing()) {
+			dialog.show();
+		}
+
+		videoView.setOnPreparedListener(new OnPreparedListener() {
+
+			@Override
+			public void onPrepared(MediaPlayer mp) {
+
+				// 取消进度
+				if (null != dialog) {
+					dialog.cancel();
+				}
+				videoView.start();
+				// setMediaPlayer();
+			}
+		});
+
+		videoView.requestFocus();
+	}
+
+	int playNum = 0;
+	int titleNum = 0;
+
+	private void showExitDialog() {
+		new AlertDialog.Builder(this)
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setTitle("真的要退出吗，不再看会了？")
+				.setPositiveButton("不看了",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int whichButton) {
+								exitApp();
+							}
+						})
+				.setNegativeButton("再看会",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int whichButton) {
+
+							}
+						}).create().show();
+	}
+
+	protected void exitApp() {
+		UserDialogRunnable userRun = new UserDialogRunnable();
+		new Handler().postDelayed(userRun, 300L);
+	}
+
+	class UserDialogRunnable implements Runnable {
+
+		@Override
+		public void run() {
+			finish();
+			overridePendingTransition(R.anim.hyperspace_in,
+					R.anim.hyperspace_out);
+			// android.os.Process.killProcess(android.os.Process.myPid());
+		}
+
+	}
+
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+		Logger.log("onKeyDown  ----------------执行了------------------");
+		switch (keyCode) {
+		case KeyEvent.KEYCODE_DPAD_CENTER:
+			Logger.log("KEYCODE_ENTER  ----------------执行了------------------");
+			// mMediaController.show();
+			if (videoView.isPlaying()) {
+				// 暂停
+				videoView.pause();
+				// 展示暂停
+				hintPopImg.setImageResource(R.drawable.osd_pause);
+				hintPop.showAtLocation(videoView, 17, 0, 0);
+			} else {
+				hintPop.dismiss();
+				videoView.start();
+			}
+
+			break;
+		case KeyEvent.KEYCODE_DPAD_LEFT:
+			Logger.log("KEYCODE_DPAD_LEFT  ----------------执行了------------------");
+			// mMediaController.show();
+			showCtrTop();
+			ctrBot.show();
+			// if (event.getRepeatCount() == 0 && event.getEventTime() > 2 *
+			// 1000) {
+			// videoBack();
+			// }
+			return false;
+		case KeyEvent.KEYCODE_DPAD_RIGHT:
+			Logger.log("KEYCODE_DPAD_RIGHT  ----------------执行了------------------");
+			// mMediaController.show();
+			showCtrTop();
+			ctrBot.show();
+			// if (event.getRepeatCount() == 0 && event.getEventTime() > 2 *
+			// 1000) {
+			// videoAdd();
+			// }
+			return false;
+		case KeyEvent.KEYCODE_BACK:
+
+			showExitToast();
+			return true;
+		case KeyEvent.KEYCODE_MENU:
+
+			showMenuPopup();
+
+			return true;
+		}
+
+		return false;
+	};
+
+	PlayerMenuControl menuControl;
+
+	Handler menuHandler = new Handler();
+
+	private void showMenuPopup() {
+		if (menuControl == null) {
+			menuControl = new PlayerMenuControl(this, menuHandler);
+		} else {
+			if (menuControl.isShowing()) {
+				menuControl.dismiss();
+			} else {
+				menuControl.showAtLocation(videoView, Gravity.CENTER, 0, 0);
+				menuControl.showVoiceLevel(menuControl.getVoice());
+			}
+		}
+	}
+
+	private long mExitTime;
+
+	private void showExitToast() {
+		if ((System.currentTimeMillis() - mExitTime) > 3000) {
+			toast.setText("再按一次退出......");
+			toast.setIcon(R.drawable.toast_shut);
+			toast.show();
+			mExitTime = System.currentTimeMillis();
+		} else {
+			finish();
+		}
+	}
+
+	int addOrbackNum = 30 * 1000;
+
+	private void videoBack() {
+		long pos = videoView.getCurrentPosition();
+		pos -= addOrbackNum;
+		videoView.seekTo(pos);
+	}
+
+	private void videoAdd() {
+		long pos = videoView.getCurrentPosition();
+		pos += addOrbackNum;
+		videoView.seekTo(pos);
+	}
+
+	public void changeScales(int whatMode) {
+		videoView.selectScales(whatMode);
+		
+		
+	}
+
+	OnErrorListener errorListener = new OnErrorListener() {
+
+		@Override
+		public boolean onError(MediaPlayer mp, int what, int extra) {
+
+			return true;
+		}
+	};
+
+	protected void onDestroy() {
+		if (ctrTop != null) {
+			ctrTop.dismiss();
+		}
+		if (ctrBot != null) {
+			ctrBot.dismiss();
+		}
+		if (hintPop != null) {
+			hintPop.dismiss();
+		}
+		super.onDestroy();
+	};
+
+}

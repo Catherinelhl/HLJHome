@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:id="@id/type_details"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/video_details_bg"
+        android:orientation="vertical" >
+
+        <com.hlj.view.CommonTitleView
+            android:id="@id/commonTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="top" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1.0dip"
+            android:layout_marginBottom="5.0dip"
+            android:layout_marginTop="5.0dip"
+            android:scaleType="fitXY"
+            android:src="@drawable/line760" />
+
+        <GridView
+            android:id="@id/type_details_grid"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50.0dip"
+            android:layout_marginLeft="35.0dip"
+            android:layout_marginRight="35.0dip"
+            android:nextFocusDown="@id/type_details_grid"
+            android:nextFocusLeft="@id/type_details_grid"
+            android:nextFocusRight="@id/type_details_grid"
+            android:nextFocusUp="@id/type_details_grid"
+            android:numColumns="6"
+            android:scrollbars="none"
+            android:smoothScrollbar="true" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@id/white_border"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_border"
+        android:visibility="invisible" />
+
+    <include
+        android:id="@id/type_details_menulayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        layout="@layout/type_details_filter"
+        android:visibility="gone" />
+
+</FrameLayout>

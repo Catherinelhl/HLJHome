@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="bottom" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_width="fill_parent" android:layout_height="2.0dip" android:src="@drawable/fliter_line_hor" />
+    <LinearLayout android:gravity="center_horizontal" android:orientation="horizontal" android:background="@drawable/fliter_bg" android:layout_width="fill_parent" android:layout_height="300.0dip">
+        <LinearLayout android:orientation="horizontal" android:id="@id/filter_rank" android:layout_width="182.0dip" android:layout_height="fill_parent">
+            <ImageView android:layout_width="1.0dip" android:layout_height="fill_parent" android:src="@drawable/filter_line_ver" android:scaleType="fitXY" />
+            <LinearLayout android:orientation="vertical" android:layout_width="180.0dip" android:layout_height="fill_parent">
+                <TextView android:textSize="30.0dip" android:textColor="@color/white" android:gravity="center" android:layout_width="180.0dip" android:layout_height="60.0dip" android:text="排行" />
+                <ImageView android:layout_width="180.0dip" android:layout_height="1.0dip" android:src="@drawable/fliter_line_hor" />
+                <ListView android:id="@id/filter_list_rank" android:layout_width="fill_parent" android:layout_height="fill_parent" android:divider="#ff000000" />
+            </LinearLayout>
+            <ImageView android:layout_width="1.0dip" android:layout_height="fill_parent" android:src="@drawable/filter_line_ver" android:scaleType="fitXY" />
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@id/filter_area" android:layout_width="181.0dip" android:layout_height="fill_parent">
+            <LinearLayout android:orientation="vertical" android:layout_width="180.0dip" android:layout_height="fill_parent">
+                <TextView android:textSize="30.0dip" android:textColor="@color/white" android:gravity="center" android:layout_width="180.0dip" android:layout_height="60.0dip" android:text="地区" />
+                <ImageView android:layout_width="180.0dip" android:layout_height="1.0dip" android:src="@drawable/fliter_line_hor" />
+                <ListView android:id="@id/filter_list_area" android:layout_width="fill_parent" android:layout_height="fill_parent" android:divider="#ff000000" />
+            </LinearLayout>
+            <ImageView android:layout_width="1.0dip" android:layout_height="fill_parent" android:src="@drawable/filter_line_ver" android:scaleType="fitXY" />
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@id/filter_sharp" android:layout_width="181.0dip" android:layout_height="fill_parent">
+            <LinearLayout android:orientation="vertical" android:layout_width="180.0dip" android:layout_height="fill_parent">
+                <TextView android:textSize="30.0dip" android:textColor="@color/white" android:gravity="center" android:layout_width="180.0dip" android:layout_height="60.0dip" android:text="清晰度" />
+                <ImageView android:layout_width="180.0dip" android:layout_height="1.0dip" android:src="@drawable/fliter_line_hor" />
+                <ListView android:id="@id/filter_list_sharp" android:layout_width="fill_parent" android:layout_height="fill_parent" android:divider="#ff000000" />
+            </LinearLayout>
+            <ImageView android:layout_width="1.0dip" android:layout_height="fill_parent" android:src="@drawable/filter_line_ver" android:scaleType="fitXY" />
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@id/filter_type" android:layout_width="181.0dip" android:layout_height="fill_parent">
+            <LinearLayout android:orientation="vertical" android:layout_width="180.0dip" android:layout_height="fill_parent">
+                <TextView android:textSize="30.0dip" android:textColor="@color/white" android:gravity="center" android:layout_width="180.0dip" android:layout_height="60.0dip" android:text="类型" />
+                <ImageView android:layout_width="180.0dip" android:layout_height="1.0dip" android:src="@drawable/fliter_line_hor" />
+                <ListView android:id="@id/filter_list_type" android:layout_width="fill_parent" android:layout_height="fill_parent" android:divider="#ff000000" />
+            </LinearLayout>
+            <ImageView android:layout_width="1.0dip" android:layout_height="fill_parent" android:src="@drawable/filter_line_ver" android:scaleType="fitXY" />
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@id/filter_year" android:layout_width="181.0dip" android:layout_height="fill_parent">
+            <LinearLayout android:orientation="vertical" android:layout_width="180.0dip" android:layout_height="fill_parent">
+                <TextView android:textSize="30.0dip" android:textColor="@color/white" android:gravity="center" android:layout_width="180.0dip" android:layout_height="60.0dip" android:text="年代" />
+                <ImageView android:layout_width="180.0dip" android:layout_height="1.0dip" android:src="@drawable/fliter_line_hor" />
+                <ListView android:id="@id/filter_list_year" android:layout_width="fill_parent" android:layout_height="fill_parent" android:divider="#ff000000" />
+            </LinearLayout>
+            <ImageView android:layout_width="1.0dip" android:layout_height="fill_parent" android:src="@drawable/filter_line_ver" android:scaleType="fitXY" />
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@id/filter_sort" android:layout_width="181.0dip" android:layout_height="fill_parent">
+            <LinearLayout android:orientation="vertical" android:layout_width="180.0dip" android:layout_height="fill_parent">
+                <TextView android:textSize="30.0dip" android:textColor="@color/white" android:gravity="center" android:layout_width="180.0dip" android:layout_height="60.0dip" android:text="排序" />
+                <ImageView android:layout_width="180.0dip" android:layout_height="1.0dip" android:src="@drawable/fliter_line_hor" />
+                <ListView android:id="@id/filter_list_sort" android:layout_width="fill_parent" android:layout_height="fill_parent" android:divider="#ff000000" />
+            </LinearLayout>
+            <ImageView android:layout_width="1.0dip" android:layout_height="fill_parent" android:src="@drawable/filter_line_ver" android:scaleType="fitXY" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,195 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/before_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/layout_isNet"
+            android:layout_width="wrap_content"
+            android:layout_height="80dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/text_isNet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:text="检测有线（无线）是否连接"
+                android:textColor="#fff"
+                android:textSize="37dip"
+                android:textStyle="bold" >
+            </TextView>
+
+            <Button
+                android:id="@+id/btn_isNet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="53dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/app_del" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_inNet"
+            android:layout_width="wrap_content"
+            android:layout_height="80dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/text_inNet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:text="检测内网是否连接"
+                android:textColor="#fff"
+                android:textSize="37dip"
+                android:textStyle="bold" >
+            </TextView>
+
+            <Button
+                android:id="@+id/btn_inNet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="202dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/app_del" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_outNet"
+            android:layout_width="wrap_content"
+            android:layout_height="80dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/text_outNet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:text="检测外网是否连接"
+                android:textColor="#fff"
+                android:textSize="37dip"
+                android:textStyle="bold" >
+            </TextView>
+
+            <Button
+                android:id="@+id/btn_outNet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="202dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/app_del" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_DNS"
+            android:layout_width="wrap_content"
+            android:layout_height="80dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/text_DNS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:text="检测DNS是否正常"
+                android:textColor="#fff"
+                android:textSize="37dip"
+                android:textStyle="bold" >
+            </TextView>
+
+            <Button
+                android:id="@+id/btn_DNS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="202dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/app_del" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_Authen"
+            android:layout_width="wrap_content"
+            android:layout_height="80dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/text_Authen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:text="设备认证检查注册"
+                android:textColor="#fff"
+                android:textSize="37dip"
+                android:textStyle="bold" >
+            </TextView>
+
+            <Button
+                android:id="@+id/btn_Authen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="202dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/app_del" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/before_btn_selector"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:text="手动注册"
+            android:textColor="#000"
+            android:textSize="35dip"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/btn_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:background="@drawable/before_btn_selector"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:text="网络设置"
+            android:textColor="#000"
+            android:textSize="35dip" />
+
+        <Button
+            android:id="@+id/btn_reflush"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:background="@drawable/before_btn_selector"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:text="重新认证"
+            android:textColor="#000"
+            android:textSize="35dip" />
+    </LinearLayout>
+    <!-- android:background="@drawable/btn_selector" -->
+
+</RelativeLayout>
